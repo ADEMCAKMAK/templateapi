@@ -1,6 +1,6 @@
 package com.springboot.template.core.repository.base;
 
-import com.exercises.springboot.core.entity.base.BaseEntity;
+import com.springboot.template.core.entity.base.BaseEntity;
 import org.hibernate.envers.AuditReader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

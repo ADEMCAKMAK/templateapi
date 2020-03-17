@@ -2,6 +2,7 @@ package com.springboot.template.core.configuration.hibernate;
 
 import org.hibernate.envers.DefaultRevisionEntity;
 import org.hibernate.envers.RevisionEntity;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 

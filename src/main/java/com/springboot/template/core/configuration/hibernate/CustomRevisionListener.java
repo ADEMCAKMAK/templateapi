@@ -1,6 +1,6 @@
 package com.springboot.template.core.configuration.hibernate;
 
-import com.exercises.springboot.core.security.SecurityContexts;
+import com.springboot.template.core.security.SecurityContexts;
 import org.hibernate.envers.RevisionListener;
 
 public class CustomRevisionListener implements RevisionListener {

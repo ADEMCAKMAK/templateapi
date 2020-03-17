@@ -1,6 +1,6 @@
 package com.springboot.template.core.security.core;
 
-import com.exercises.springboot.core.security.SecurityContexts;
+import com.springboot.template.core.security.SecurityContexts;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 

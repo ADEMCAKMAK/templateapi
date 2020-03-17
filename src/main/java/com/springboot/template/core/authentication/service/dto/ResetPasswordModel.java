@@ -1,7 +1,5 @@
 package com.springboot.template.core.authentication.service.dto;
 
-import java.util.UUID;
-
 public class ResetPasswordModel {
 
     private String id;

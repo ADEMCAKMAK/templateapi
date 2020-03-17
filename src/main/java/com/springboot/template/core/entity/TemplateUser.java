@@ -1,7 +1,7 @@
 package com.springboot.template.core.entity;
 
-import com.exercises.springboot.core.entity.base.BaseEntity;
-import com.exercises.springboot.core.entity.id.generator.SequenceIdGenerator;
+import com.springboot.template.core.entity.base.BaseEntity;
+import com.springboot.template.core.entity.id.generator.SequenceIdGenerator;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -14,7 +14,7 @@ public class TemplateUser extends BaseEntity<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="template_user_seq")
     @GenericGenerator(name = "template_user_seq",
-        strategy="com.exercises.springboot.core.entity.id.generator.SequenceIdGenerator",
+        strategy="com.springboot.template.core.entity.id.generator.SequenceIdGenerator",
         parameters = {
             @org.hibernate.annotations.Parameter(name = SequenceIdGenerator.INITIAL_PARAM, value = "50")
         }

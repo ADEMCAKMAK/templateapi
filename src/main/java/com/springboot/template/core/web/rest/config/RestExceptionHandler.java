@@ -1,10 +1,5 @@
 package com.springboot.template.core.web.rest.config;
-import com.google.common.collect.Lists;
 
-import java.io.IOException;
-import java.util.Date;
-
-import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +13,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.ConstraintViolationException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package com.springboot.template.core.configuration;
 
-import com.exercises.springboot.core.security.jwt.JWTConfigurer;
-import com.exercises.springboot.core.security.jwt.TokenProvider;
-import com.exercises.springboot.core.security.web.JWTAuthenticationEntryPoint;
+import com.springboot.template.core.security.jwt.JWTConfigurer;
+import com.springboot.template.core.security.jwt.TokenProvider;
+import com.springboot.template.core.security.web.JWTAuthenticationEntryPoint;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;

@@ -1,8 +1,8 @@
 package com.springboot.template.core.security.core;
 
-import com.exercises.springboot.core.authentication.entity.SpringUser;
-import com.exercises.springboot.core.authentication.entity.User;
-import com.exercises.springboot.core.repository.UserRepository;
+import com.springboot.template.core.authentication.entity.SpringUser;
+import com.springboot.template.core.authentication.entity.User;
+import com.springboot.template.core.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

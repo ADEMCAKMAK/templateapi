@@ -1,6 +1,6 @@
 package com.springboot.template.storage;
 
-import com.exercises.springboot.core.exception.base.BaseException;
+import com.springboot.template.core.exception.base.BaseException;
 
 public class FileNotFoundException extends BaseException {
 

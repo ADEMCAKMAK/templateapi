@@ -1,6 +1,6 @@
 package com.springboot.template.core.service.dto;
 
-import com.exercises.springboot.core.entity.base.IBaseEntity;
+import com.springboot.template.core.entity.base.IBaseEntity;
 
 import java.io.Serializable;
 import java.util.Date;

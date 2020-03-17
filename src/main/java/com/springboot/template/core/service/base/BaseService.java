@@ -1,22 +1,19 @@
 package com.springboot.template.core.service.base;
 
 
-import com.exercises.springboot.core.entity.base.BaseEntity;
-import com.exercises.springboot.core.entity.base.HistoryEntity;
-import com.exercises.springboot.core.exception.EntityNotFoundException;
-import com.exercises.springboot.core.repository.base.IBaseRepository;
-import com.exercises.springboot.core.service.dto.BaseDTO;
-import com.exercises.springboot.core.service.helper.MapperHelper;
+import com.springboot.template.core.entity.base.BaseEntity;
+import com.springboot.template.core.entity.base.HistoryEntity;
+import com.springboot.template.core.exception.EntityNotFoundException;
+import com.springboot.template.core.repository.base.IBaseRepository;
+import com.springboot.template.core.service.dto.BaseDTO;
+import com.springboot.template.core.service.helper.MapperHelper;
 import org.hibernate.envers.DefaultRevisionEntity;
 import org.hibernate.envers.RevisionType;
 import org.hibernate.envers.query.AuditEntity;
 import org.hibernate.envers.query.AuditQuery;
-import org.hibernate.envers.query.AuditQueryCreator;
-import org.hibernate.envers.query.order.AuditOrder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;

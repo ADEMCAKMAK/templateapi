@@ -1,6 +1,6 @@
 package com.springboot.template.core.web.rest.model;
 
-import com.exercises.springboot.core.security.jwt.JWTConfigurer;
+import com.springboot.template.core.security.jwt.JWTConfigurer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**

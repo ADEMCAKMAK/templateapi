@@ -1,7 +1,7 @@
 package com.springboot.template.core.authentication.service.dto;
 
-import com.exercises.springboot.core.authentication.entity.Authority;
-import com.exercises.springboot.core.service.dto.ValueDTO;
+import com.springboot.template.core.authentication.entity.Authority;
+import com.springboot.template.core.service.dto.ValueDTO;
 
 import java.util.Set;
 

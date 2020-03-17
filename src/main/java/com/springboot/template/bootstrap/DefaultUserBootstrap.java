@@ -1,16 +1,16 @@
 package com.springboot.template.bootstrap;
 
-
-import com.exercises.springboot.core.authentication.entity.Authority;
-import com.exercises.springboot.core.authentication.entity.Role;
-import com.exercises.springboot.core.authentication.service.UserService;
-import com.exercises.springboot.core.authentication.service.dto.UserDTO;
-import com.exercises.springboot.core.repository.AuthorityRepository;
-import com.exercises.springboot.core.repository.RoleRepository;
+import com.springboot.template.core.authentication.entity.Authority;
+import com.springboot.template.core.authentication.entity.Role;
+import com.springboot.template.core.authentication.service.UserService;
+import com.springboot.template.core.authentication.service.dto.UserDTO;
+import com.springboot.template.core.repository.AuthorityRepository;
+import com.springboot.template.core.repository.RoleRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Collectors;

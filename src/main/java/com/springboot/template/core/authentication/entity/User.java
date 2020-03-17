@@ -1,9 +1,8 @@
 package com.springboot.template.core.authentication.entity;
 
-import com.exercises.springboot.core.authentication.AuthenticationConstants;
-import com.exercises.springboot.core.entity.base.BaseEntity;
-import com.exercises.springboot.core.entity.base.SimpleBaseEntity;
-import com.exercises.springboot.core.entity.id.generator.SequenceIdGenerator;
+import com.springboot.template.core.authentication.AuthenticationConstants;
+import com.springboot.template.core.entity.base.BaseEntity;
+import com.springboot.template.core.entity.id.generator.SequenceIdGenerator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.envers.Audited;
@@ -14,7 +13,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Audited
 @Entity

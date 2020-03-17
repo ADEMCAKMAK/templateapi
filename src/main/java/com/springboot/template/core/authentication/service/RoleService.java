@@ -1,12 +1,12 @@
 package com.springboot.template.core.authentication.service;
 
-import com.exercises.springboot.core.authentication.entity.Authority;
-import com.exercises.springboot.core.authentication.entity.Role;
-import com.exercises.springboot.core.authentication.service.base.IRoleService;
-import com.exercises.springboot.core.authentication.service.dto.RoleDTO;
-import com.exercises.springboot.core.repository.AuthorityRepository;
-import com.exercises.springboot.core.repository.RoleRepository;
-import com.exercises.springboot.core.service.base.BaseService;
+import com.springboot.template.core.authentication.entity.Authority;
+import com.springboot.template.core.authentication.entity.Role;
+import com.springboot.template.core.authentication.service.base.IRoleService;
+import com.springboot.template.core.authentication.service.dto.RoleDTO;
+import com.springboot.template.core.repository.AuthorityRepository;
+import com.springboot.template.core.repository.RoleRepository;
+import com.springboot.template.core.service.base.BaseService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

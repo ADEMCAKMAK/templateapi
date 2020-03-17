@@ -1,6 +1,6 @@
 package com.springboot.template.storage;
 
-import com.exercises.springboot.core.repository.StoredFileRepository;
+import com.springboot.template.core.repository.StoredFileRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;

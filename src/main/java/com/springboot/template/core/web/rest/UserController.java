@@ -1,10 +1,10 @@
 package com.springboot.template.core.web.rest;
 
-import com.exercises.springboot.core.authentication.entity.User;
-import com.exercises.springboot.core.authentication.service.UserService;
-import com.exercises.springboot.core.authentication.service.dto.UserDTO;
-import com.exercises.springboot.core.web.rest.base.CrudController;
-import com.exercises.springboot.core.web.rest.base.IUserController;
+import com.springboot.template.core.authentication.entity.User;
+import com.springboot.template.core.authentication.service.UserService;
+import com.springboot.template.core.authentication.service.dto.UserDTO;
+import com.springboot.template.core.web.rest.base.CrudController;
+import com.springboot.template.core.web.rest.base.IUserController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,11 +1,10 @@
 package com.springboot.template.core.web.rest;
 
-import com.exercises.springboot.core.authentication.service.UserService;
-import com.exercises.springboot.core.authentication.service.dto.*;
-import com.exercises.springboot.core.security.jwt.JWTConfigurer;
-import com.exercises.springboot.core.security.jwt.TokenProvider;
-import com.exercises.springboot.core.web.rest.model.JWTToken;
-import com.exercises.springboot.core.web.rest.model.LoginModel;
+import com.springboot.template.core.authentication.service.UserService;
+import com.springboot.template.core.authentication.service.dto.*;
+import com.springboot.template.core.security.jwt.JWTConfigurer;
+import com.springboot.template.core.web.rest.model.JWTToken;
+import com.springboot.template.core.web.rest.model.LoginModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

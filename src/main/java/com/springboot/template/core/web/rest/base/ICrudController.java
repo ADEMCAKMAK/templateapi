@@ -1,8 +1,8 @@
 package com.springboot.template.core.web.rest.base;
 
 
-import com.exercises.springboot.core.entity.base.BaseEntity;
-import com.exercises.springboot.core.service.dto.BaseDTO;
+import com.springboot.template.core.entity.base.BaseEntity;
+import com.springboot.template.core.service.dto.BaseDTO;
 
 import java.io.Serializable;
 

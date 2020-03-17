@@ -1,6 +1,6 @@
 package com.springboot.template.core.configuration;
 
-import com.exercises.springboot.core.security.jwt.JWTConfigurer;
+import com.springboot.template.core.security.jwt.JWTConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Pageable;

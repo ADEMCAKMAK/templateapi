@@ -1,8 +1,7 @@
 package com.springboot.template.core.authentication.entity;
 
-import com.exercises.springboot.core.entity.base.ValueEntity;
+import com.springboot.template.core.entity.base.ValueEntity;
 import org.hibernate.envers.Audited;
-import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import java.util.HashSet;

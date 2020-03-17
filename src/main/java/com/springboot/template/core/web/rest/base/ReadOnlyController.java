@@ -1,9 +1,9 @@
 package com.springboot.template.core.web.rest.base;
 
-import com.exercises.springboot.core.entity.base.BaseEntity;
-import com.exercises.springboot.core.entity.base.HistoryEntity;
-import com.exercises.springboot.core.service.base.BaseService;
-import com.exercises.springboot.core.service.dto.BaseDTO;
+import com.springboot.template.core.entity.base.BaseEntity;
+import com.springboot.template.core.entity.base.HistoryEntity;
+import com.springboot.template.core.service.base.BaseService;
+import com.springboot.template.core.service.dto.BaseDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;

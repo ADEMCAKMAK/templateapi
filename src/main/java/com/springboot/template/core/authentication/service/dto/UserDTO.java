@@ -1,12 +1,11 @@
 package com.springboot.template.core.authentication.service.dto;
 
 
-import com.exercises.springboot.core.authentication.entity.Authority;
-import com.exercises.springboot.core.authentication.entity.Role;
+import com.springboot.template.core.authentication.entity.Authority;
+import com.springboot.template.core.authentication.entity.Role;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 public class UserDTO extends UserUpdateModel {
 

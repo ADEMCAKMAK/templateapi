@@ -1,29 +1,26 @@
 package com.springboot.template.core.authentication.service;
 
-import java.util.*;
-
-import com.exercises.springboot.core.authentication.service.dto.*;
-import com.exercises.springboot.core.exception.EntityNotFoundException;
-import com.exercises.springboot.core.security.jwt.TokenProvider;
-import com.exercises.springboot.mail.MailService;
+import com.springboot.template.core.authentication.entity.Authority;
+import com.springboot.template.core.authentication.entity.Role;
+import com.springboot.template.core.authentication.entity.User;
+import com.springboot.template.core.authentication.service.base.IUserService;
+import com.springboot.template.core.authentication.service.dto.*;
+import com.springboot.template.core.exception.EntityNotFoundException;
+import com.springboot.template.core.exception.base.BaseException;
+import com.springboot.template.core.repository.AuthorityRepository;
+import com.springboot.template.core.repository.RoleRepository;
+import com.springboot.template.core.repository.UserRepository;
+import com.springboot.template.core.security.jwt.TokenProvider;
+import com.springboot.template.core.service.base.BaseService;
+import com.springboot.template.mail.MailService;
 import com.google.common.collect.Sets;
-
-import com.exercises.springboot.core.authentication.entity.Authority;
-import com.exercises.springboot.core.authentication.entity.Role;
-import com.exercises.springboot.core.authentication.entity.User;
-import com.exercises.springboot.core.authentication.service.base.IUserService;
-import com.exercises.springboot.core.exception.base.BaseException;
-import com.exercises.springboot.core.repository.AuthorityRepository;
-import com.exercises.springboot.core.repository.RoleRepository;
-import com.exercises.springboot.core.repository.UserRepository;
-import com.exercises.springboot.core.service.base.BaseService;
-import io.jsonwebtoken.Jwts;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 

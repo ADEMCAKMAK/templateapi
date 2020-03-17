@@ -1,11 +1,10 @@
 package com.springboot.template.core.web.rest;
 
-import com.exercises.springboot.core.entity.TemplateUser;
-import com.exercises.springboot.core.service.TemplateUserService;
-import com.exercises.springboot.core.service.base.BaseService;
-import com.exercises.springboot.core.service.dto.TemplateUserDTO;
-import com.exercises.springboot.core.web.rest.base.CrudController;
-import com.exercises.springboot.core.web.rest.base.ITemplateUserController;
+import com.springboot.template.core.entity.TemplateUser;
+import com.springboot.template.core.service.TemplateUserService;
+import com.springboot.template.core.service.dto.TemplateUserDTO;
+import com.springboot.template.core.web.rest.base.CrudController;
+import com.springboot.template.core.web.rest.base.ITemplateUserController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

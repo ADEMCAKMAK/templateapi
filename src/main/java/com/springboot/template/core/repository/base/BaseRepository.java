@@ -1,11 +1,10 @@
 package com.springboot.template.core.repository.base;
 
-import com.exercises.springboot.core.entity.base.BaseEntity;
-import com.exercises.springboot.core.repository.base.support.RSQLQueryUtils;
+import com.springboot.template.core.entity.base.BaseEntity;
+import com.springboot.template.core.repository.base.support.RSQLQueryUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
@@ -14,9 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 
 public class BaseRepository<T extends BaseEntity<ID>, ID extends Serializable>

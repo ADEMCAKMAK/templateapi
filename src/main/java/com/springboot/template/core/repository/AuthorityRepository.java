@@ -1,7 +1,7 @@
 package com.springboot.template.core.repository;
 
-import com.exercises.springboot.core.authentication.entity.Authority;
-import com.exercises.springboot.core.repository.base.IBaseRepository;
+import com.springboot.template.core.authentication.entity.Authority;
+import com.springboot.template.core.repository.base.IBaseRepository;
 
 import java.util.Optional;
 

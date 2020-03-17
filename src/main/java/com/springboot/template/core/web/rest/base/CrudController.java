@@ -1,10 +1,13 @@
 package com.springboot.template.core.web.rest.base;
 
 
-import com.exercises.springboot.core.entity.base.BaseEntity;
-import com.exercises.springboot.core.service.base.BaseService;
-import com.exercises.springboot.core.service.dto.BaseDTO;
-import org.springframework.web.bind.annotation.*;
+import com.springboot.template.core.entity.base.BaseEntity;
+import com.springboot.template.core.service.base.BaseService;
+import com.springboot.template.core.service.dto.BaseDTO;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.io.Serializable;

@@ -1,15 +1,11 @@
 package com.springboot.template.storage;
 
-import com.exercises.springboot.core.entity.base.BaseEntity;
+import com.springboot.template.core.entity.base.BaseEntity;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.envers.Audited;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.persistence.*;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.UUID;
 
 @Audited

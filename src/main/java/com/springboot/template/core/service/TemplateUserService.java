@@ -1,12 +1,10 @@
 package com.springboot.template.core.service;
 
-import com.exercises.springboot.core.entity.TemplateUser;
-import com.exercises.springboot.core.repository.TemplateUserRepository;
-import com.exercises.springboot.core.repository.base.IBaseRepository;
-import com.exercises.springboot.core.service.base.BaseService;
-import com.exercises.springboot.core.service.base.IBaseService;
-import com.exercises.springboot.core.service.base.ITemplateUserService;
-import com.exercises.springboot.core.service.dto.TemplateUserDTO;
+import com.springboot.template.core.entity.TemplateUser;
+import com.springboot.template.core.repository.TemplateUserRepository;
+import com.springboot.template.core.service.base.BaseService;
+import com.springboot.template.core.service.base.ITemplateUserService;
+import com.springboot.template.core.service.dto.TemplateUserDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
