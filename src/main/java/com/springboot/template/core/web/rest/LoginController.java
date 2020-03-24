@@ -1,7 +1,7 @@
 package com.springboot.template.core.web.rest;
 
-import com.springboot.template.core.authentication.service.UserService;
-import com.springboot.template.core.authentication.service.dto.*;
+import com.springboot.template.core.service.UserService;
+import com.springboot.template.core.service.dto.*;
 import com.springboot.template.core.security.jwt.JWTConfigurer;
 import com.springboot.template.core.web.rest.model.JWTToken;
 import com.springboot.template.core.web.rest.model.LoginModel;
@@ -36,13 +36,6 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @PostMapping("/register")
-    public void register(@Valid @RequestBody RegisterModel registerModel,
-                        HttpServletRequest request,
-                        HttpServletResponse response) {
-        this.userService.register(registerModel);
-    }
-
     @PostMapping("/login")
     public ResponseEntity<Object> login(@Valid @RequestBody LoginModel loginModel,
                                         HttpServletRequest request,
@@ -63,36 +56,5 @@ public class LoginController {
                     HttpStatus.UNAUTHORIZED);
         }
     }
-
-    @PutMapping("/account/update")
-    public UserDTO updateUserInfo(@Valid @RequestBody UserUpdateModel userUpdateModel,
-                                  HttpServletRequest request,
-                                  HttpServletResponse response) {
-        return this.userService.updateUserInfo(userUpdateModel);
-    }
-
-    @PutMapping("/forgot-password")
-    public void forgotPassword(@Valid @RequestBody ForgotPasswordModel forgotPasswordModel,
-                              HttpServletRequest request,
-                              HttpServletResponse response) throws MessagingException {
-        this.userService.forgotPassword(forgotPasswordModel);
-    }
-
-    @PutMapping("/reset-password")
-    public void resetPassword(@Valid @RequestBody ResetPasswordModel resetPasswordModel,
-                              HttpServletRequest request,
-                              HttpServletResponse response) {
-        this.userService.resetPassword(resetPasswordModel);
-    }
-
-    @PutMapping("/account/update-password")
-    public void updatePassword(@Valid @RequestBody ResetPasswordModel resetPasswordModel,
-                              HttpServletRequest request,
-                              HttpServletResponse response) {
-        this.userService.resetPassword(resetPasswordModel);
-    }
-
-
-
 
 }

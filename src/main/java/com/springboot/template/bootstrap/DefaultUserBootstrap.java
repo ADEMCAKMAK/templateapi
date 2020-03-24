@@ -1,9 +1,9 @@
 package com.springboot.template.bootstrap;
 
-import com.springboot.template.core.authentication.entity.Authority;
-import com.springboot.template.core.authentication.entity.Role;
-import com.springboot.template.core.authentication.service.UserService;
-import com.springboot.template.core.authentication.service.dto.UserDTO;
+import com.springboot.template.core.entity.Authority;
+import com.springboot.template.core.entity.Role;
+import com.springboot.template.core.service.UserService;
+import com.springboot.template.core.service.dto.UserDTO;
 import com.springboot.template.core.repository.AuthorityRepository;
 import com.springboot.template.core.repository.RoleRepository;
 import org.springframework.boot.CommandLineRunner;

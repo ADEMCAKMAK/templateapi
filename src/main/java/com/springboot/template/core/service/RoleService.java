@@ -1,9 +1,9 @@
-package com.springboot.template.core.authentication.service;
+package com.springboot.template.core.service;
 
-import com.springboot.template.core.authentication.entity.Authority;
-import com.springboot.template.core.authentication.entity.Role;
-import com.springboot.template.core.authentication.service.base.IRoleService;
-import com.springboot.template.core.authentication.service.dto.RoleDTO;
+import com.springboot.template.core.entity.Authority;
+import com.springboot.template.core.entity.Role;
+import com.springboot.template.core.service.base.IRoleService;
+import com.springboot.template.core.service.dto.RoleDTO;
 import com.springboot.template.core.repository.AuthorityRepository;
 import com.springboot.template.core.repository.RoleRepository;
 import com.springboot.template.core.service.base.BaseService;

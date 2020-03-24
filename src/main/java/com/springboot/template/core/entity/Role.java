@@ -1,4 +1,4 @@
-package com.springboot.template.core.authentication.entity;
+package com.springboot.template.core.entity;
 
 import com.springboot.template.core.entity.base.ValueEntity;
 import org.hibernate.envers.Audited;

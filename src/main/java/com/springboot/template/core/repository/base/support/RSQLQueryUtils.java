@@ -13,7 +13,6 @@ public class RSQLQueryUtils {
 
     public static <E> Specification<E> toSpecification(final String query, final EntityManager entityManager) {
         return (root, criteriaQuery, criteriaBuilder) -> {
-
             @SuppressWarnings("unchecked")
             RSQLVisitor<Predicate, EntityManager> visitor = new JpaPredicateVisitor<E>().defineRoot(root);
 

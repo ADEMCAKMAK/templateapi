@@ -1,6 +1,6 @@
-package com.springboot.template.core.authentication.entity;
+package com.springboot.template.core.entity;
 
-import com.springboot.template.core.authentication.AuthenticationConstants;
+import com.springboot.template.core.constant.AuthenticationConstants;
 import com.springboot.template.core.entity.base.BaseEntity;
 import com.springboot.template.core.entity.id.generator.SequenceIdGenerator;
 import com.fasterxml.jackson.annotation.JsonIgnore;

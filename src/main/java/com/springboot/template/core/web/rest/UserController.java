@@ -1,19 +1,22 @@
 package com.springboot.template.core.web.rest;
 
-import com.springboot.template.core.authentication.entity.User;
-import com.springboot.template.core.authentication.service.UserService;
-import com.springboot.template.core.authentication.service.dto.UserDTO;
+import com.springboot.template.core.entity.User;
+import com.springboot.template.core.service.UserService;
+import com.springboot.template.core.service.dto.*;
 import com.springboot.template.core.web.rest.base.CrudController;
 import com.springboot.template.core.web.rest.base.IUserController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.springboot.template.core.web.rest.base.ReadOnlyController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 
 @RestController
 @RequestMapping("/user")
-public class UserController extends CrudController<User, String, UserDTO> implements IUserController {
+public class UserController extends ReadOnlyController<User, String, UserDTO> implements IUserController {
 
     private UserService userService;
 
@@ -22,13 +25,39 @@ public class UserController extends CrudController<User, String, UserDTO> implem
         this.userService = userService;
     }
 
-    @Override
-    public UserDTO create(@Valid UserDTO model) {
-        throw new UnsupportedOperationException();
+    @PostMapping("/register")
+    public void register(@Valid @RequestBody RegisterModel registerModel,
+                         HttpServletRequest request,
+                         HttpServletResponse response) {
+        this.userService.register(registerModel);
     }
 
-    @Override
-    public UserDTO update(String s, @Valid UserDTO model) {
-        throw new UnsupportedOperationException();
+    @PutMapping("/account/update")
+    public UserDTO updateUserInfo(@Valid @RequestBody UserUpdateModel userUpdateModel,
+                                  HttpServletRequest request,
+                                  HttpServletResponse response) {
+        return this.userService.updateUserInfo(userUpdateModel);
     }
+
+    @PutMapping("/account/forgot-password")
+    public void forgotPassword(@Valid @RequestBody ForgotPasswordModel forgotPasswordModel,
+                               HttpServletRequest request,
+                               HttpServletResponse response) throws MessagingException {
+        this.userService.forgotPassword(forgotPasswordModel);
+    }
+
+    @PutMapping("/account/reset-password")
+    public void resetPassword(@Valid @RequestBody ResetPasswordModel resetPasswordModel,
+                              HttpServletRequest request,
+                              HttpServletResponse response) {
+        this.userService.resetPassword(resetPasswordModel);
+    }
+
+    @PutMapping("/account/update-password")
+    public void updatePassword(@Valid @RequestBody ResetPasswordModel resetPasswordModel,
+                               HttpServletRequest request,
+                               HttpServletResponse response) {
+        this.userService.resetPassword(resetPasswordModel);
+    }
+
 }

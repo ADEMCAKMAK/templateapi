@@ -1,4 +1,4 @@
-package com.springboot.template.core.authentication;
+package com.springboot.template.core.constant;
 
 public final class AuthenticationConstants {
     public static final String NAME_TEXT_PATTERN = "^[a-zA-ZçÇğĞıIiİöÖşŞüÜ]+[a-zA-ZçÇğĞıIiİöÖşŞüÜ\\s]+$";

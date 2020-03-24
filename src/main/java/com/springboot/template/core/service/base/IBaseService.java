@@ -19,8 +19,6 @@ public interface IBaseService<T extends BaseEntity<ID>, ID extends Serializable,
 
     Optional<M> findById(ID id);
 
-    M _findById(ID id);
-
     M create(M model);
 
     M update(ID id, M model);

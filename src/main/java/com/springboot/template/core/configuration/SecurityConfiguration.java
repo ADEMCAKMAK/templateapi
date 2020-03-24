@@ -61,19 +61,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         web.ignoring()
-                .antMatchers(HttpMethod.OPTIONS, "/**")
-                .antMatchers("/app/**/*.{js,html}")
-                .antMatchers("/bower_components/**")
-                .antMatchers("/i18n/**")
-                .antMatchers("/content/**")
-                .antMatchers("/swagger-ui/index.html")
-                .antMatchers("/test/**")
-                .antMatchers("/v2/api-docs")
-                .antMatchers("/configuration/ui")
-                .antMatchers("/swagger-resources/**")
-                .antMatchers("/configuration/security")
-                .antMatchers("/swagger-ui.html")
-                .antMatchers("/webjars/**");
+            .antMatchers(HttpMethod.OPTIONS, "/**")
+            .antMatchers("/app/**/*.{js,html}")
+            .antMatchers("/bower_components/**")
+            .antMatchers("/i18n/**")
+            .antMatchers("/content/**")
+            .antMatchers("/swagger-ui/index.html")
+            .antMatchers("/test/**")
+            .antMatchers("/v2/api-docs")
+            .antMatchers("/configuration/ui")
+            .antMatchers("/swagger-resources/**")
+            .antMatchers("/configuration/security")
+            .antMatchers("/swagger-ui.html")
+            .antMatchers("/webjars/**");
     }
 
     @Override
@@ -86,8 +86,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests( expressionInterceptUrlRegistry -> {
                 expressionInterceptUrlRegistry
-                        .antMatchers("/register","/login", "/api/activate",
-                                "/account/forgot-password/", "/account/reset-password").permitAll()
+                        .antMatchers("/register","/login","/api/activate","/account/forgot-password/","/account/reset-password").permitAll()
                         .antMatchers("/v2/api-docs/**").permitAll()
                         .antMatchers("/swagger-resources/configuration/ui").permitAll()
                         .antMatchers("/swagger-ui/index.html").permitAll()

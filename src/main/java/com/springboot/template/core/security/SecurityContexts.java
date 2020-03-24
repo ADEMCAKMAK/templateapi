@@ -1,6 +1,6 @@
 package com.springboot.template.core.security;
 
-import com.springboot.template.core.authentication.entity.SpringUser;
+import com.springboot.template.core.entity.SpringUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;

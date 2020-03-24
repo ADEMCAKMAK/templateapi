@@ -21,7 +21,6 @@ public class HistoryEntity<T extends Serializable> implements IHistoryEntity<T>,
         this.revisionType = revisionType;
     }
 
-
     @Override
     public T getEntity() {
         return entity;
