@@ -21,12 +21,10 @@ public class BaseRepository<T extends BaseEntity<ID>, ID extends Serializable>
         implements IBaseRepository<T, ID> {
 
     private final EntityManager entityManager;
-    private final JpaEntityInformation<T, ID> entityInformation;
 
-    public BaseRepository(JpaEntityInformation<T, ID> entityInformation,
+    public BaseRepository(@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection") JpaEntityInformation<T, ID> entityInformation,
                           EntityManager entityManager) {
         super(entityInformation, entityManager);
-        this.entityInformation = entityInformation;
         this.entityManager = entityManager;
     }
 

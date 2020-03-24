@@ -1,7 +1,7 @@
 package com.springboot.template.core.web.rest;
 
-import com.springboot.template.core.authentication.service.UserService;
-import com.springboot.template.core.authentication.service.dto.*;
+import com.springboot.template.core.service.UserService;
+import com.springboot.template.core.service.dto.*;
 import com.springboot.template.core.security.jwt.JWTConfigurer;
 import com.springboot.template.core.web.rest.model.JWTToken;
 import com.springboot.template.core.web.rest.model.LoginModel;

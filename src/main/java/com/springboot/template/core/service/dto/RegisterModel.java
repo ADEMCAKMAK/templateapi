@@ -1,6 +1,6 @@
-package com.springboot.template.core.authentication.service.dto;
+package com.springboot.template.core.service.dto;
 
-import com.springboot.template.core.authentication.AuthenticationConstants;
+import com.springboot.template.core.constant.AuthenticationConstants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.validation.constraints.Email;

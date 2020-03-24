@@ -1,4 +1,4 @@
-package com.springboot.template.core.authentication.entity;
+package com.springboot.template.core.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -31,7 +31,7 @@ public class SpringUser extends org.springframework.security.core.userdetails.Us
                         .collect(Collectors.toSet()));
     }
 
-    public static SpringUser of(String userId, String username, String password,
+    private static SpringUser of(String userId, String username, String password,
                                 Collection<? extends GrantedAuthority> authorities) {
         return new SpringUser(userId, username, password, authorities);
     }

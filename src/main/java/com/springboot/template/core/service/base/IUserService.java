@@ -1,8 +1,7 @@
-package com.springboot.template.core.authentication.service.base;
+package com.springboot.template.core.service.base;
 
-import com.springboot.template.core.authentication.entity.User;
-import com.springboot.template.core.authentication.service.dto.*;
-import com.springboot.template.core.service.base.IBaseService;
+import com.springboot.template.core.entity.User;
+import com.springboot.template.core.service.dto.*;
 import org.springframework.security.core.Authentication;
 
 import javax.mail.MessagingException;

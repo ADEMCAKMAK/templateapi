@@ -1,8 +1,8 @@
 package com.springboot.template.core.web.rest;
 
-import com.springboot.template.core.authentication.entity.Role;
-import com.springboot.template.core.authentication.service.RoleService;
-import com.springboot.template.core.authentication.service.dto.RoleDTO;
+import com.springboot.template.core.entity.Role;
+import com.springboot.template.core.service.RoleService;
+import com.springboot.template.core.service.dto.RoleDTO;
 import com.springboot.template.core.web.rest.base.CrudController;
 import com.springboot.template.core.web.rest.base.IRoleController;
 import org.springframework.web.bind.annotation.RequestMapping;

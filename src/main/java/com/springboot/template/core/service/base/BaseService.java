@@ -63,13 +63,6 @@ public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializa
         return this.repository.findById(id).map(this::convertTo);
     }
 
-
-    @Override
-    public M _findById(ID id) {
-        return this.repository.findById(id).map(this::convertTo)
-                .orElseThrow(() -> new EntityNotFoundException(this.entityClassName, "id", id.toString()));
-    }
-
     @Override
     @Transactional
     public M create(M model) {

@@ -1,7 +1,7 @@
 package com.springboot.template.core.security.jwt;
 
-import com.springboot.template.core.authentication.entity.SpringUser;
-import com.springboot.template.core.authentication.service.dto.UserDTO;
+import com.springboot.template.core.entity.SpringUser;
+import com.springboot.template.core.service.dto.UserDTO;
 import com.springboot.template.core.exception.PasswordResetException;
 import com.springboot.template.core.service.helper.DateHelper;
 import io.jsonwebtoken.*;

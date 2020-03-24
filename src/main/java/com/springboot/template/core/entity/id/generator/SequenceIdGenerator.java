@@ -21,7 +21,7 @@ public class SequenceIdGenerator extends SequenceStyleGenerator {
     private String valuePrefix;
 
     public static final String NUMBER_FORMAT_PARAMETER = "numberFormat";
-    public static final String NUMBER_FORMAT_DEFAULT = "%d";  // "%05d" 5 digits numbers format info
+    public static final String NUMBER_FORMAT_DEFAULT = "%d";  // "%05d" 5 digits numbers format info trick
     private String numberFormat;
 
     @Override

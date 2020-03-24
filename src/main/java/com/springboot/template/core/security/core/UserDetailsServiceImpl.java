@@ -1,7 +1,7 @@
 package com.springboot.template.core.security.core;
 
-import com.springboot.template.core.authentication.entity.SpringUser;
-import com.springboot.template.core.authentication.entity.User;
+import com.springboot.template.core.entity.SpringUser;
+import com.springboot.template.core.entity.User;
 import com.springboot.template.core.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
