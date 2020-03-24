@@ -34,7 +34,7 @@ public abstract class ReadOnlyController<T extends BaseEntity<ID>, ID extends Se
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     @Override
     public M findById(@PathVariable("id") ID id) {
-        return service._findById(id);
+        return service.findById(id).orElse(null);
     }
 
     @RequestMapping(value = "/audit/{id}", method = RequestMethod.GET)

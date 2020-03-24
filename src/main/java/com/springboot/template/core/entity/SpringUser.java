@@ -31,7 +31,7 @@ public class SpringUser extends org.springframework.security.core.userdetails.Us
                         .collect(Collectors.toSet()));
     }
 
-    private static SpringUser of(String userId, String username, String password,
+    public static SpringUser of(String userId, String username, String password,
                                 Collection<? extends GrantedAuthority> authorities) {
         return new SpringUser(userId, username, password, authorities);
     }
