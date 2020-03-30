@@ -1,29 +1,24 @@
 package com.springboot.template.core.service.dto;
 
-import com.springboot.template.core.entity.Authority;
-import com.springboot.template.core.service.dto.ValueDTO;
-
 import java.util.Set;
 
 public class RoleDTO extends ValueDTO {
 
-    private Set<Authority> authorities;
+    private Set<AuthorityDTO> authorities;
 
-    private Set<String> authorityCodes;
+    public RoleDTO() {
+    }
 
-    public Set<Authority> getAuthorities() {
+    public RoleDTO(String code, String text) {
+        super(code, text);
+    }
+
+    public Set<AuthorityDTO> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(Set<Authority> authorities) {
+    public void setAuthorities(Set<AuthorityDTO> authorities) {
         this.authorities = authorities;
     }
 
-    public Set<String> getAuthorityCodes() {
-        return authorityCodes;
-    }
-
-    public void setAuthorityCodes(Set<String> authorityCodes) {
-        this.authorityCodes = authorityCodes;
-    }
 }

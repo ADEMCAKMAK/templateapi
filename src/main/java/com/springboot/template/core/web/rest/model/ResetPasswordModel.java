@@ -1,10 +1,10 @@
-package com.springboot.template.core.service.dto;
+package com.springboot.template.core.web.rest.model;
 
 public class ResetPasswordModel {
 
     private String id;
 
-    private String resetTokenKey;
+    private String resetUUID;
 
     private String oldPassword;
 
@@ -20,12 +20,12 @@ public class ResetPasswordModel {
         this.id = id;
     }
 
-    public String getResetTokenKey() {
-        return resetTokenKey;
+    public String getResetUUID() {
+        return resetUUID;
     }
 
-    public void setResetTokenKey(String resetTokenKey) {
-        this.resetTokenKey = resetTokenKey;
+    public void setResetUUID(String resetUUID) {
+        this.resetUUID = resetUUID;
     }
 
     public String getOldPassword() {

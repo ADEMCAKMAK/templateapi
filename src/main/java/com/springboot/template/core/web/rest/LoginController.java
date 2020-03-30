@@ -1,8 +1,7 @@
 package com.springboot.template.core.web.rest;
 
-import com.springboot.template.core.service.UserService;
-import com.springboot.template.core.service.dto.*;
 import com.springboot.template.core.security.jwt.JWTConfigurer;
+import com.springboot.template.core.service.UserService;
 import com.springboot.template.core.web.rest.model.JWTToken;
 import com.springboot.template.core.web.rest.model.LoginModel;
 import org.springframework.http.HttpStatus;
@@ -13,11 +12,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;

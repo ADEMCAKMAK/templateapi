@@ -12,8 +12,7 @@ import java.util.Set;
 @Table(name = "Z_ROLE")
 public class Role extends ValueEntity {
 
-    @ManyToMany(fetch = FetchType.EAGER,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "Z_ROLE_AUTHORITY",
             uniqueConstraints = @UniqueConstraint(columnNames = {"ROLE_ID", "AUTHORITY_ID"}),
             joinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID"),

@@ -1,10 +1,11 @@
 package com.springboot.template.core.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.springboot.template.core.constant.AuthenticationConstants;
 import com.springboot.template.core.entity.base.BaseEntity;
 import com.springboot.template.core.entity.id.generator.SequenceIdGenerator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
@@ -25,11 +26,11 @@ public class User extends BaseEntity<String> {
     @GenericGenerator(name = AuthenticationConstants.USER_GENERATOR,
             strategy=AuthenticationConstants.GENERATOR_CLASS,
             parameters = {
-                    @org.hibernate.annotations.Parameter(name = SequenceIdGenerator.INITIAL_PARAM,
+                    @Parameter(name = SequenceIdGenerator.INITIAL_PARAM,
                             value = AuthenticationConstants.USER_INITIAL_VALUE),
-                    @org.hibernate.annotations.Parameter(name = SequenceIdGenerator.VALUE_PREFIX_PARAMETER,
+                    @Parameter(name = SequenceIdGenerator.VALUE_PREFIX_PARAMETER,
                             value = AuthenticationConstants.USER_PREFIX),
-                    @org.hibernate.annotations.Parameter(name = SequenceIdGenerator.NUMBER_FORMAT_PARAMETER,
+                    @Parameter(name = SequenceIdGenerator.NUMBER_FORMAT_PARAMETER,
                             value = AuthenticationConstants.USER_NUM_FORMAT)
             }
     )
@@ -67,11 +68,10 @@ public class User extends BaseEntity<String> {
     @Column(name = "RESET_TOKEN")
     private String resetToken;
 
-    @Column(name = "RESET_TOKEN_KEY")
-    private String resetTokenKey;
+    @Column(name = "RESET_UUID")
+    private String resetUUID;
 
-    @ManyToMany(fetch = FetchType.EAGER,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "Z_USER_ROLE",
             uniqueConstraints = @UniqueConstraint(columnNames = {"USER_ID", "ROLE_ID"}),
             joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
@@ -79,8 +79,7 @@ public class User extends BaseEntity<String> {
     private Set<Role> roles = new HashSet<>(0);
 
 
-    @ManyToMany(fetch = FetchType.EAGER,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "Z_USER_AUTHORITY",
             uniqueConstraints = @UniqueConstraint(columnNames = {"USER_ID", "AUTHORITY_ID"}),
             joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
@@ -172,12 +171,12 @@ public class User extends BaseEntity<String> {
         this.resetToken = resetToken;
     }
 
-    public String getResetTokenKey() {
-        return resetTokenKey;
+    public String getResetUUID() {
+        return resetUUID;
     }
 
-    public void setResetTokenKey(String resetTokenKey) {
-        this.resetTokenKey = resetTokenKey;
+    public void setResetUUID(String resetUUID) {
+        this.resetUUID = resetUUID;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.springboot.template.core.service.dto;
+package com.springboot.template.core.web.rest.model;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;

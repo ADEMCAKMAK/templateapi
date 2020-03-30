@@ -1,7 +1,11 @@
 package com.springboot.template.core.service.base;
 
 import com.springboot.template.core.entity.User;
-import com.springboot.template.core.service.dto.*;
+import com.springboot.template.core.service.dto.UserDTO;
+import com.springboot.template.core.web.rest.model.ForgotPasswordModel;
+import com.springboot.template.core.web.rest.model.RegisterModel;
+import com.springboot.template.core.web.rest.model.ResetPasswordModel;
+import com.springboot.template.core.web.rest.model.UserUpdateModel;
 import org.springframework.security.core.Authentication;
 
 import javax.mail.MessagingException;

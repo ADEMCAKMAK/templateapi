@@ -2,10 +2,13 @@ package com.springboot.template.core.web.rest;
 
 import com.springboot.template.core.entity.User;
 import com.springboot.template.core.service.UserService;
-import com.springboot.template.core.service.dto.*;
-import com.springboot.template.core.web.rest.base.CrudController;
+import com.springboot.template.core.service.dto.UserDTO;
 import com.springboot.template.core.web.rest.base.IUserController;
 import com.springboot.template.core.web.rest.base.ReadOnlyController;
+import com.springboot.template.core.web.rest.model.ForgotPasswordModel;
+import com.springboot.template.core.web.rest.model.RegisterModel;
+import com.springboot.template.core.web.rest.model.ResetPasswordModel;
+import com.springboot.template.core.web.rest.model.UserUpdateModel;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;

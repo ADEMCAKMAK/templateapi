@@ -16,7 +16,9 @@ public class BootstrapProperties {
 
     public static class Bootstrap {
 
-        private boolean userActive = false;
+        private boolean authorityActive = false;
+        private boolean roleActive      = false;
+        private boolean userActive      = false;
 
         public boolean isUserActive() {
             return userActive;
@@ -24,6 +26,22 @@ public class BootstrapProperties {
 
         public void setUserActive(boolean userActive) {
             this.userActive = userActive;
+        }
+
+        public boolean isAuthorityActive() {
+            return authorityActive;
+        }
+
+        public void setAuthorityActive(boolean authorityActive) {
+            this.authorityActive = authorityActive;
+        }
+
+        public boolean isRoleActive() {
+            return roleActive;
+        }
+
+        public void setRoleActive(boolean roleActive) {
+            this.roleActive = roleActive;
         }
     }
 }

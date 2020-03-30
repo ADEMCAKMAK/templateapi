@@ -1,8 +1,6 @@
 package com.springboot.template.core.service.dto;
 
-
-import com.springboot.template.core.entity.Authority;
-import com.springboot.template.core.entity.Role;
+import com.springboot.template.core.web.rest.model.UserUpdateModel;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,15 +13,11 @@ public class UserDTO extends UserUpdateModel {
 
     private String resetToken;
 
-    private String resetTokenKey;
+    private String resetUUID;
 
-    private Set<Role> roles;
+    private Set<RoleDTO> roles = new HashSet<>(0);
 
-    private Set<Authority> authorities;
-
-    private Set<String> roleCodes = new HashSet<>();
-
-    private Set<String> authorityCodes = new HashSet<>();
+    private Set<AuthorityDTO> authorities = new HashSet<>(0);
 
     public String getPassword() {
         return password;
@@ -49,43 +43,27 @@ public class UserDTO extends UserUpdateModel {
         this.resetToken = resetToken;
     }
 
-    public String getResetTokenKey() {
-        return resetTokenKey;
+    public String getResetUUID() {
+        return resetUUID;
     }
 
-    public void setResetTokenKey(String resetTokenKey) {
-        this.resetTokenKey = resetTokenKey;
+    public void setResetUUID(String resetUUID) {
+        this.resetUUID = resetUUID;
     }
 
-    public Set<Role> getRoles() {
+    public Set<RoleDTO> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Set<RoleDTO> roles) {
         this.roles = roles;
     }
 
-    public Set<Authority> getAuthorities() {
+    public Set<AuthorityDTO> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(Set<Authority> authorities) {
+    public void setAuthorities(Set<AuthorityDTO> authorities) {
         this.authorities = authorities;
-    }
-
-    public Set<String> getRoleCodes() {
-        return roleCodes;
-    }
-
-    public void setRoleCodes(Set<String> roleCodes) {
-        this.roleCodes = roleCodes;
-    }
-
-    public Set<String> getAuthorityCodes() {
-        return authorityCodes;
-    }
-
-    public void setAuthorityCodes(Set<String> authorityCodes) {
-        this.authorityCodes = authorityCodes;
     }
 }

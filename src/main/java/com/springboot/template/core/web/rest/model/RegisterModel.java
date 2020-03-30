@@ -1,12 +1,16 @@
-package com.springboot.template.core.service.dto;
+package com.springboot.template.core.web.rest.model;
 
-import com.springboot.template.core.constant.AuthenticationConstants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.springboot.template.core.constant.AuthenticationConstants;
+import com.springboot.template.core.service.dto.AuthorityDTO;
+import com.springboot.template.core.service.dto.RoleDTO;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class RegisterModel {
@@ -25,12 +29,21 @@ public class RegisterModel {
 
     @JsonIgnore
     @NotNull
+    @Size(min = 60, max = 60)
     private String password;
 
     @Email
     @Size(max = 100)
     private String email;
 
+    private Set<RoleDTO> roles = new HashSet<>(0);
+
+    private Set<AuthorityDTO> authorities = new HashSet<>(0);
+
+    public RegisterModel() {
+        authorities.add(new AuthorityDTO("USER","USER"));
+        roles.add(new RoleDTO("USER", "USER"));
+    }
 
     public String getFirstname() {
         return firstname;
@@ -70,5 +83,21 @@ public class RegisterModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<RoleDTO> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleDTO> roles) {
+        this.roles = roles;
+    }
+
+    public Set<AuthorityDTO> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Set<AuthorityDTO> authorities) {
+        this.authorities = authorities;
     }
 }

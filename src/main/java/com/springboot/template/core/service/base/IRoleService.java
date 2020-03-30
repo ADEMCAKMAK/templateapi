@@ -3,5 +3,9 @@ package com.springboot.template.core.service.base;
 import com.springboot.template.core.entity.Role;
 import com.springboot.template.core.service.dto.RoleDTO;
 
+import java.util.Optional;
+
 public interface IRoleService extends IBaseService<Role, Long, RoleDTO> {
+
+    Optional<RoleDTO> findOneByCode(String code);
 }

@@ -1,19 +1,21 @@
 package com.springboot.template.core.service;
 
-import com.springboot.template.core.entity.Authority;
-import com.springboot.template.core.entity.Role;
 import com.springboot.template.core.entity.User;
-import com.springboot.template.core.service.base.IUserService;
-import com.springboot.template.core.service.dto.*;
 import com.springboot.template.core.exception.EntityNotFoundException;
 import com.springboot.template.core.exception.base.BaseException;
-import com.springboot.template.core.repository.AuthorityRepository;
-import com.springboot.template.core.repository.RoleRepository;
 import com.springboot.template.core.repository.UserRepository;
 import com.springboot.template.core.security.jwt.TokenProvider;
 import com.springboot.template.core.service.base.BaseService;
+import com.springboot.template.core.service.base.IUserService;
+import com.springboot.template.core.service.dto.AuthorityDTO;
+import com.springboot.template.core.service.dto.RoleDTO;
+import com.springboot.template.core.service.dto.UserDTO;
+import com.springboot.template.core.service.helper.MapperHelper;
+import com.springboot.template.core.web.rest.model.ForgotPasswordModel;
+import com.springboot.template.core.web.rest.model.RegisterModel;
+import com.springboot.template.core.web.rest.model.ResetPasswordModel;
+import com.springboot.template.core.web.rest.model.UserUpdateModel;
 import com.springboot.template.mail.MailService;
-import com.google.common.collect.Sets;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Transactional(readOnly = true)
@@ -29,25 +31,25 @@ import java.util.stream.Collectors;
 public class UserService extends BaseService<User, String, UserDTO> implements IUserService {
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
-    private final AuthorityRepository authorityRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
     private final MailService mailService;
+    private final AuthorityService authorityService;
+    private final RoleService roleService;
 
     public UserService(UserRepository userRepository,
-                       RoleRepository roleRepository,
-                       AuthorityRepository authorityRepository,
                        PasswordEncoder passwordEncoder,
                        TokenProvider tokenProvider,
-                       MailService mailService) {
+                       MailService mailService,
+                       AuthorityService authorityService,
+                       RoleService roleService) {
         super(userRepository);
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.authorityRepository = authorityRepository;
         this.passwordEncoder = passwordEncoder;
         this.tokenProvider = tokenProvider;
         this.mailService = mailService;
+        this.authorityService = authorityService;
+        this.roleService = roleService;
     }
 
     @Override
@@ -58,17 +60,20 @@ public class UserService extends BaseService<User, String, UserDTO> implements I
     @Override
     @Transactional
     public void register(RegisterModel registerModel) {
+        String[] defaultCodes = new String[]{"USER"};
+        Set<RoleDTO> roleDTOS = new HashSet<>();
+        Set<AuthorityDTO> authorityDTOS = new HashSet<>();
 
-        UserDTO userDTO = new UserDTO();
-        userDTO.setFirstname(registerModel.getFirstname());
-        userDTO.setLastname(registerModel.getLastname());
-        userDTO.setUsername(registerModel.getUsername());
-        userDTO.setPassword(registerModel.getPassword());
-        userDTO.setEmail(registerModel.getEmail());
-        userDTO.setActivated(true);
-        userDTO.setRoleCodes(Sets.newHashSet(Collections.singletonList("USER")));
-        userDTO.setAuthorityCodes(Sets.newHashSet(Collections.singletonList("USER")));
-        this.create(userDTO);
+        for (String defaultCode : defaultCodes) {
+            Optional<AuthorityDTO> authorityOptional = authorityService.findOneByCode(defaultCode);
+            Optional<RoleDTO> roleOptional = roleService.findOneByCode(defaultCode);
+            authorityOptional.ifPresent(authorityDTOS::add);
+            roleOptional.ifPresent(roleDTOS::add);
+        }
+        registerModel.setRoles(roleDTOS);
+        registerModel.setAuthorities(authorityDTOS);
+        registerModel.setPassword(this.passwordEncoder.encode(registerModel.getPassword()));
+        this.create(MapperHelper.getMapper().map(registerModel, UserDTO.class));
     }
 
     @Override
@@ -77,12 +82,7 @@ public class UserService extends BaseService<User, String, UserDTO> implements I
         UserDTO optionalUser = this.userRepository.findById(userUpdateModel.getId())
                 .map(this::convertTo)
                 .orElseThrow(() -> new EntityNotFoundException(this.getClass().getSimpleName(), "id", userUpdateModel.getId()));
-        optionalUser.setFirstname(userUpdateModel.getFirstname());
-        optionalUser.setLastname(userUpdateModel.getLastname());
-        optionalUser.setUsername(userUpdateModel.getUsername());
-        optionalUser.setEmail(userUpdateModel.getEmail());
-        optionalUser.setPhoneNumber(userUpdateModel.getPhoneNumber());
-
+        MapperHelper.getMapper().map(userUpdateModel, optionalUser);
         return this.update(optionalUser.getId(), optionalUser);
     }
 
@@ -98,7 +98,6 @@ public class UserService extends BaseService<User, String, UserDTO> implements I
         if (optionalUser.isPresent()) {
             throw new BaseException("Email is already in use");
         }
-        this.setRoleAndAuthority(model);
         return super.create(model);
     }
 
@@ -114,7 +113,6 @@ public class UserService extends BaseService<User, String, UserDTO> implements I
         if (optionalUser.isPresent() && !Objects.equals(optionalUser.get().getId(), model.getId())) {
             throw new BaseException("Email is already in use");
         }
-        this.setRoleAndAuthority(model);
         return super.update(id, model);
     }
 
@@ -134,7 +132,7 @@ public class UserService extends BaseService<User, String, UserDTO> implements I
         String resetToken = this.tokenProvider.generateResetToken(userDTO);
         UUID uuid = UUID.randomUUID();
         userDTO.setResetToken(resetToken);
-        userDTO.setResetTokenKey(uuid.toString());
+        userDTO.setResetUUID(uuid.toString());
         this.mailService.send(forgotPasswordModel.getEmail(), "test mail", "<p>" + this.mailHtmlContent(uuid.toString())+"</p>");
         this.update(userDTO.getId(), userDTO);
     }
@@ -154,15 +152,15 @@ public class UserService extends BaseService<User, String, UserDTO> implements I
     @Override
     @Transactional
     public void resetPassword(ResetPasswordModel resetPasswordModel) {
-        UserDTO userDTO = this.userRepository.findByResetTokenKey(resetPasswordModel.getResetTokenKey())
+        UserDTO userDTO = this.userRepository.findByResetUUID(resetPasswordModel.getResetUUID())
                 .map(this::convertTo)
-                .orElseThrow(() -> new EntityNotFoundException(this.getClass().getSimpleName(), "reset_token_key", resetPasswordModel.getResetTokenKey()));
+                .orElseThrow(() -> new EntityNotFoundException(this.getClass().getSimpleName(), "reset_token_key", resetPasswordModel.getResetUUID()));
 
         if (this.tokenProvider.validateResetToken(userDTO.getResetToken())) {
             if (Objects.equals(resetPasswordModel.getNewPassword(), resetPasswordModel.getNewPasswordConfirm())){
                 userDTO.setPassword(this.passwordEncoder.encode(resetPasswordModel.getNewPassword()));
                 userDTO.setResetToken(null);
-                userDTO.setResetTokenKey(null);
+                userDTO.setResetUUID(null);
                 this.update(userDTO.getId(), userDTO);
             }
             else{
@@ -191,17 +189,6 @@ public class UserService extends BaseService<User, String, UserDTO> implements I
     @Override
     public Optional<UserDTO> findByUsername(String username) {
         return this.userRepository.findByUsername(username).map(this::convertTo);
-    }
-
-    private void setRoleAndAuthority(UserDTO model) {
-        List<Role> roles = this.roleRepository.findAll();
-        List<Authority> authorities = this.authorityRepository.findAll();
-        model.setRoles(roles.stream()
-                .filter(role -> model.getRoleCodes().contains(role.getCode()))
-                .collect(Collectors.toSet()));
-        model.setAuthorities(authorities.stream()
-                .filter(authority -> model.getAuthorityCodes().contains(authority.getCode()))
-                .collect(Collectors.toSet()));
     }
 
 }

@@ -9,5 +9,5 @@ public interface UserRepository extends IBaseRepository<User, String> {
 
     Optional<User> findByUsername(String username);
     Optional<User> findByEmail(String email);
-    Optional<User> findByResetTokenKey(String resetTokenKey);
+    Optional<User> findByResetUUID(String resetUUID);
 }

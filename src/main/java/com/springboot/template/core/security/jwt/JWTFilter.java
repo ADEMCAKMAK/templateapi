@@ -45,7 +45,7 @@ public class JWTFilter extends GenericFilterBean {
     private String resolveAuthToken(HttpServletRequest request) {
         String authToken = request.getHeader(JWTConfigurer.AUTHORIZATION_HEADER);
         if (!StringUtils.hasText(authToken))
-            authToken = request.getParameter(JWTConfigurer.AUTHORIZATION_HEADER.toLowerCase());
+            authToken = request.getParameter(JWTConfigurer.AUTHORIZATION_HEADER);
         return StringUtils.hasText(authToken) ? authToken : null;
     }
 

@@ -1,7 +1,7 @@
 package com.springboot.template.core.web.rest.model;
 
-import com.springboot.template.core.security.jwt.JWTConfigurer;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.springboot.template.core.security.jwt.JWTConfigurer;
 
 /**
  * Object to return as body in JWT Authentication.
