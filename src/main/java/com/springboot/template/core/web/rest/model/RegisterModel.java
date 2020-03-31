@@ -27,9 +27,7 @@ public class RegisterModel {
     @Size(min = 1, max = 50)
     private String username;
 
-    @JsonIgnore
     @NotNull
-    @Size(min = 60, max = 60)
     private String password;
 
     @Email

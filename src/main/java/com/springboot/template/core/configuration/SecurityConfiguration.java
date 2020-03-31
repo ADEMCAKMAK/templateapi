@@ -86,12 +86,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests( expressionInterceptUrlRegistry -> {
                 expressionInterceptUrlRegistry
-                        .antMatchers("/register","/login","/api/activate","/account/forgot-password/","/account/reset-password").permitAll()
+                        .antMatchers("/user/register","/login","/user/activate","/user/account/forgot-password","/user/account/reset-password").permitAll()
                         .antMatchers("/v2/api-docs/**").permitAll()
                         .antMatchers("/swagger-resources/configuration/ui").permitAll()
                         .antMatchers("/swagger-ui/index.html").permitAll()
-                        .antMatchers("/api/**").permitAll()
-                        .antMatchers("/**").permitAll();
+                        .antMatchers("/api/**").authenticated();
             }).apply(securityConfigurerAdapter());
     }
 

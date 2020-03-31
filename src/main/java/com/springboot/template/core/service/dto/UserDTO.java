@@ -1,5 +1,6 @@
 package com.springboot.template.core.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.springboot.template.core.web.rest.model.UserUpdateModel;
 
 import java.util.HashSet;
@@ -7,6 +8,7 @@ import java.util.Set;
 
 public class UserDTO extends UserUpdateModel {
 
+    @JsonIgnore
     private String password;
 
     private boolean activated;
