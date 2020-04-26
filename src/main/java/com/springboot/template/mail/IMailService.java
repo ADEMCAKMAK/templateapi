@@ -9,7 +9,10 @@ import java.util.List;
 public interface IMailService {
 
     void send(String to, String subject, String text) throws MessagingException;
+
     void send(List<String> to, String subject, String text) throws MessagingException;
-    void send(String to, String subject, String text, MultipartFile attachment) throws MessagingException, IOException;
-    void send(List<String> to, String subject, String text, MultipartFile attachment) throws IOException, MessagingException;
+
+    void send(String to, String subject, String text, List<MultipartFile> attachments) throws IOException, MessagingException;
+
+    void send(List<String> to, String subject, String text, List<MultipartFile> attachments) throws IOException, MessagingException;
 }

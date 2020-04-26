@@ -61,37 +61,37 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         web.ignoring()
-            .antMatchers(HttpMethod.OPTIONS, "/**")
-            .antMatchers("/app/**/*.{js,html}")
-            .antMatchers("/bower_components/**")
-            .antMatchers("/i18n/**")
-            .antMatchers("/content/**")
-            .antMatchers("/swagger-ui/index.html")
-            .antMatchers("/test/**")
-            .antMatchers("/v2/api-docs")
-            .antMatchers("/configuration/ui")
-            .antMatchers("/swagger-resources/**")
-            .antMatchers("/configuration/security")
-            .antMatchers("/swagger-ui.html")
-            .antMatchers("/webjars/**");
+                .antMatchers(HttpMethod.OPTIONS, "/**")
+                .antMatchers("/app/**/*.{js,html}")
+                .antMatchers("/bower_components/**")
+                .antMatchers("/i18n/**")
+                .antMatchers("/content/**")
+                .antMatchers("/swagger-ui/index.html")
+                .antMatchers("/test/**")
+                .antMatchers("/v2/api-docs")
+                .antMatchers("/configuration/ui")
+                .antMatchers("/swagger-resources/**")
+                .antMatchers("/configuration/security")
+                .antMatchers("/swagger-ui.html")
+                .antMatchers("/webjars/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.addFilterBefore(corsFilter(), UsernamePasswordAuthenticationFilter.class)
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .csrf(AbstractHttpConfigurer::disable)
-            .exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint()).and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-            .authorizeRequests( expressionInterceptUrlRegistry -> {
-                expressionInterceptUrlRegistry
-                        .antMatchers("/user/register","/login","/user/activate","/user/account/forgot-password","/user/account/reset-password").permitAll()
-                        .antMatchers("/v2/api-docs/**").permitAll()
-                        .antMatchers("/swagger-resources/configuration/ui").permitAll()
-                        .antMatchers("/swagger-ui/index.html").permitAll()
-                        .antMatchers("/api/**").authenticated();
-            }).apply(securityConfigurerAdapter());
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .csrf(AbstractHttpConfigurer::disable)
+                .exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint()).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .authorizeRequests(expressionInterceptUrlRegistry -> {
+                    expressionInterceptUrlRegistry
+                            .antMatchers("/user/register", "/login", "/user/activate", "/user/account/forgot-password", "/user/account/reset-password").permitAll()
+                            .antMatchers("/v2/api-docs/**").permitAll()
+                            .antMatchers("/swagger-resources/configuration/ui").permitAll()
+                            .antMatchers("/swagger-ui/index.html").permitAll()
+                            .antMatchers("/api/**").authenticated();
+                }).apply(securityConfigurerAdapter());
     }
 
     private JWTConfigurer securityConfigurerAdapter() {

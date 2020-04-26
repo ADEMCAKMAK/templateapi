@@ -35,12 +35,12 @@ public class DefaultRoleBootStrap implements CommandLineRunner {
 
     @Transactional
     @Override
-    public void run(String... args)  {
+    public void run(String... args) {
 
         if (!this.bootstrapProperties.getBootstrap().isRoleActive())
             return;
 
-        String[] defaultAuthoritiesCodes = new String[]{"ADMIN","USER"};
+        String[] defaultAuthoritiesCodes = new String[]{"ADMIN", "USER"};
         List<AuthorityDTO> defaultAuthorities = new ArrayList<>();
         RoleDTO[] defaultRoles = new RoleDTO[]{
                 new RoleDTO("ADMIN", "ADMIN"),
@@ -49,8 +49,8 @@ public class DefaultRoleBootStrap implements CommandLineRunner {
         for (String defaultAuthoritiesCode : defaultAuthoritiesCodes) {
             Optional<AuthorityDTO> authorityOptional = authorityService.findOneByCode(defaultAuthoritiesCode);
             authorityOptional.ifPresent(defaultAuthorities::add);
-            authorityOptional.ifPresent( authorityDTO -> {
-                if( authorityDTO.getCode().equals("USER") )
+            authorityOptional.ifPresent(authorityDTO -> {
+                if (authorityDTO.getCode().equals("USER"))
                     defaultRoles[1].setAuthorities(Stream.of(authorityOptional.get()).collect(Collectors.toSet()));
             });
         }

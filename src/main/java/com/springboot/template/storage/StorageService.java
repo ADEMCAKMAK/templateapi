@@ -30,13 +30,11 @@ public class StorageService implements IStorageService {
         storedFile.setOriginalFileName(file.getOriginalFilename());
         storedFile.setFileType(file.getContentType());
         storedFile.setContent(file.getBytes());
-        // TODO encrypt the content
         return this.repository.save(storedFile).getId();
     }
 
     @Override
     public StoredFile load(UUID uuid) {
-        // TODO decrypt the content
         return this.repository.findById(uuid)
                 .orElseThrow(() -> new FileNotFoundException("File Not Found!"));
     }

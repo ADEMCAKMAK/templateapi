@@ -25,7 +25,7 @@ public class SpringUser extends org.springframework.security.core.userdetails.Us
                 .flatMap(Collection::stream)
                 .collect(Collectors.toSet());
         authorities.addAll(user.getAuthorities());
-        return  SpringUser.of(user.getId(), user.getUsername(), user.getPassword(),
+        return SpringUser.of(user.getId(), user.getUsername(), user.getPassword(),
                 authorities.stream()
                         .map(authority -> new SimpleGrantedAuthority(authority.getCode()))
                         .collect(Collectors.toSet()));

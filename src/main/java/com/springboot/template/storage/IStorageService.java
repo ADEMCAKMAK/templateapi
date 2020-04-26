@@ -8,8 +8,11 @@ import java.util.UUID;
 public interface IStorageService {
 
     UUID store(MultipartFile file) throws IOException;
+
     StoredFile load(UUID uuid);
+
     MultipartFile get(UUID uuid);
+
     void delete(UUID uuid);
 
 }

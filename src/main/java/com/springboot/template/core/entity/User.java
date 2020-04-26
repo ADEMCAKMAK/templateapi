@@ -22,9 +22,9 @@ public class User extends BaseEntity<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator= AuthenticationConstants.USER_GENERATOR)
+            generator = AuthenticationConstants.USER_GENERATOR)
     @GenericGenerator(name = AuthenticationConstants.USER_GENERATOR,
-            strategy=AuthenticationConstants.GENERATOR_CLASS,
+            strategy = AuthenticationConstants.GENERATOR_CLASS,
             parameters = {
                     @Parameter(name = SequenceIdGenerator.INITIAL_PARAM,
                             value = AuthenticationConstants.USER_INITIAL_VALUE),

@@ -15,5 +15,7 @@ public class JWTToken {
     }
 
     @JsonProperty(JWTConfigurer.AUTHORIZATION_HEADER)
-    public String getToken() { return token; }
+    public String getToken() {
+        return token;
+    }
 }

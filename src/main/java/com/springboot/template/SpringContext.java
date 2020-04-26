@@ -13,21 +13,22 @@ import java.util.stream.Collectors;
 @Component
 public final class SpringContext implements ApplicationContextAware {
 
-    private SpringContext() {}
+    private SpringContext() {
+    }
 
     private static ApplicationContext context;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
-        storeContext(applicationContext);   
+        storeContext(applicationContext);
     }
 
     public static ApplicationContext getContext() {
         return context;
     }
-    
+
     private static void storeContext(ApplicationContext applicationContext) {
-    	context = applicationContext;
+        context = applicationContext;
     }
 
     public static <T> T getBean(String name, Class<T> requiredType) {

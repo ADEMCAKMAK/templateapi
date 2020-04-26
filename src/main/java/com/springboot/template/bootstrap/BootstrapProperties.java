@@ -17,8 +17,8 @@ public class BootstrapProperties {
     public static class Bootstrap {
 
         private boolean authorityActive = false;
-        private boolean roleActive      = false;
-        private boolean userActive      = false;
+        private boolean roleActive = false;
+        private boolean userActive = false;
 
         public boolean isUserActive() {
             return userActive;

@@ -75,7 +75,7 @@ public class StoredFile extends BaseEntity<UUID> {
     }
 
     @Transient
-    MultipartFile toMultipartFile(){
+    MultipartFile toMultipartFile() {
         return new MultipartFileImpl(this.getContent(), this.getName(), this.getOriginalFileName(), this.getFileType());
     }
 }

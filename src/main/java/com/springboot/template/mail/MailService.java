@@ -36,12 +36,12 @@ public class MailService implements IMailService {
 
     @Override
     public void send(List<String> to, String subject, String text) throws MessagingException {
-        for(String item : to)
+        for (String item : to)
             this.send(item, subject, text);
     }
 
     @Override
-    public void send(String to, String subject, String text, MultipartFile attachment)
+    public void send(String to, String subject, String text, List<MultipartFile> attachments)
             throws MessagingException, IOException {
 
         MimeMessage msg = mailSender.createMimeMessage();
@@ -49,15 +49,17 @@ public class MailService implements IMailService {
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText(text, true);
-        DataSource dataSource = new ByteArrayDataSource(attachment.getBytes(), attachment.getContentType());
-        helper.addAttachment(attachment.getName(), dataSource);
+        for (MultipartFile attachment : attachments) {
+            DataSource dataSource = new ByteArrayDataSource(attachment.getBytes(), attachment.getContentType());
+            helper.addAttachment(attachment.getName(), dataSource);
+        }
         mailSender.send(msg);
     }
 
     @Override
-    public void send(List<String> to, String subject, String text, MultipartFile attachment)
+    public void send(List<String> to, String subject, String text, List<MultipartFile> attachments)
             throws IOException, MessagingException {
-        for(String item : to)
-            this.send(item, subject, text, attachment);
+        for (String item : to)
+            this.send(item, subject, text, attachments);
     }
 }

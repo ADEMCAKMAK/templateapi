@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "name": "commandline.bootstrap.user-active",
+      "type": "java.lang.String",
+      "description": "Description for commandline.bootstrap.user-active."
+    },
+    {
+      "name": "commandline.bootstrap.role-active",
+      "type": "java.lang.String",
+      "description": "Description for commandline.bootstrap.role-active."
+    },
+    {
+      "name": "commandline.bootstrap.authority-active",
+      "type": "java.lang.String",
+      "description": "Description for commandline.bootstrap.authority-active."
+    }
+  ]
+}

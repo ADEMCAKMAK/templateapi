@@ -95,7 +95,7 @@ public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializa
     @Override
     public List<HistoryEntity<T>> findChanges(ID id) {
 
-        if( !this.isEntityClassAudited() )
+        if (!this.isEntityClassAudited())
             return Collections.emptyList();
 
         AuditQuery auditQuery = this.repository.getAuditReader().createQuery()
@@ -104,11 +104,11 @@ public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializa
         return this.convertToHistoryEntity((List<Object[]>) auditQuery.add(AuditEntity.id().eq(id)).getResultList());
     }
 
-    private List<HistoryEntity<T>> convertToHistoryEntity(List<Object[]> revisionEntities){
+    private List<HistoryEntity<T>> convertToHistoryEntity(List<Object[]> revisionEntities) {
 
         List<HistoryEntity<T>> historyEntities = new ArrayList<>();
 
-        for( Object[] objects : revisionEntities){
+        for (Object[] objects : revisionEntities) {
             historyEntities.add(
                     new HistoryEntity<>((T) objects[0], (DefaultRevisionEntity) objects[1], (RevisionType) objects[2])
             );

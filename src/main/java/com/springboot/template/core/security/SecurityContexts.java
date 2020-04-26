@@ -25,7 +25,7 @@ public final class SecurityContexts {
         return SecureConstants.SYSTEM;
     }
 
-    public static String getCurrentUserId(){
+    public static String getCurrentUserId() {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {

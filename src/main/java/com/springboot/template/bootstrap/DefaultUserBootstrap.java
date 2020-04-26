@@ -43,7 +43,7 @@ public class DefaultUserBootstrap implements CommandLineRunner {
         if (!this.bootstrapProperties.getBootstrap().isUserActive())
             return;
 
-        String[] defaultCodes = new String[]{"ADMIN","USER"};
+        String[] defaultCodes = new String[]{"ADMIN", "USER"};
         List<AuthorityDTO> defaultAuthorities = new ArrayList<>();
         List<RoleDTO> defaultRoles = new ArrayList<>();
 

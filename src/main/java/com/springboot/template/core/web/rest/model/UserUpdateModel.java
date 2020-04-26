@@ -14,11 +14,11 @@ public class UserUpdateModel extends BaseDTO<String> {
     private String id;
 
     @Size(max = 50)
-    @Pattern(regexp= AuthenticationConstants.NAME_TEXT_PATTERN)
+    @Pattern(regexp = AuthenticationConstants.NAME_TEXT_PATTERN)
     private String firstname;
 
     @Size(max = 50)
-    @Pattern(regexp=AuthenticationConstants.NAME_TEXT_PATTERN)
+    @Pattern(regexp = AuthenticationConstants.NAME_TEXT_PATTERN)
     private String lastname;
 
     @NotNull

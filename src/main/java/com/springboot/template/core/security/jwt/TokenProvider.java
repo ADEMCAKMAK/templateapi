@@ -20,7 +20,7 @@ public class TokenProvider {
 
     private static final String AUTHORITIES_KEY = "auth";
     private static final String USER_KEY = "userid";
-    private static final String secretAuthKey  = "IToRe6jfqqV413NKDo3PufgS1rKr0wq8";
+    private static final String secretAuthKey = "IToRe6jfqqV413NKDo3PufgS1rKr0wq8";
     private static final String secretResetKey = "G2klCXg181pUcrWFEmEGFyeYw6IjSfAL";
 
     public String generateToken(Authentication authentication) {
@@ -38,7 +38,7 @@ public class TokenProvider {
                 .compact();
     }
 
-    public String generateResetToken(UserDTO userDTO){
+    public String generateResetToken(UserDTO userDTO) {
 
         return Jwts.builder()
                 .setSubject(userDTO.getId())
@@ -98,7 +98,7 @@ public class TokenProvider {
             throw new PasswordResetException("Unsupported JWT token"); //logger.error("Unsupported JWT token");
         } catch (IllegalArgumentException ex) {
             throw new PasswordResetException("JWT claims string is empty.");  //logger.error("JWT claims string is empty.");
-        }  catch (Exception ex) {
+        } catch (Exception ex) {
             throw new PasswordResetException("Unexpected token");  //logger.error("JWT claims string is empty.");
         }
     }

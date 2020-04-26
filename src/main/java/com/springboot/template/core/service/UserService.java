@@ -133,19 +133,19 @@ public class UserService extends BaseService<User, String, UserDTO> implements I
         UUID uuid = UUID.randomUUID();
         userDTO.setResetToken(resetToken);
         userDTO.setResetUUID(uuid.toString());
-        this.mailService.send(forgotPasswordModel.getEmail(), "test mail", "<p>" + this.mailHtmlContent(uuid.toString())+"</p>");
+        this.mailService.send(forgotPasswordModel.getEmail(), "test mail", "<p>" + this.mailHtmlContent(uuid.toString()) + "</p>");
         this.update(userDTO.getId(), userDTO);
     }
-    
-    private String mailHtmlContent(String token){
+
+    private String mailHtmlContent(String token) {
         return "<html>" +
                 "<body>" +
                 "<h>Merhabalar,</h>" +
                 "<p>Parola değişikliği için, geçici olarak sizin için bir jeton ürettik.</p>" +
                 "<p>Aşağıdaki linki kullanarak geçici jeton ile parolanızı değiştirebilirsiniz.</p>" +
-                "<p>token :"+token+"</p>" +
+                "<p>token :" + token + "</p>" +
                 "<a href=\"https://www.w3schools.com\">Visit W3Schools.com!</a>" +
-                "</body>"+
+                "</body>" +
                 "</html>";
     }
 
@@ -157,13 +157,12 @@ public class UserService extends BaseService<User, String, UserDTO> implements I
                 .orElseThrow(() -> new EntityNotFoundException(this.getClass().getSimpleName(), "reset_token_key", resetPasswordModel.getResetUUID()));
 
         if (this.tokenProvider.validateResetToken(userDTO.getResetToken())) {
-            if (Objects.equals(resetPasswordModel.getNewPassword(), resetPasswordModel.getNewPasswordConfirm())){
+            if (Objects.equals(resetPasswordModel.getNewPassword(), resetPasswordModel.getNewPasswordConfirm())) {
                 userDTO.setPassword(this.passwordEncoder.encode(resetPasswordModel.getNewPassword()));
                 userDTO.setResetToken(null);
                 userDTO.setResetUUID(null);
                 this.update(userDTO.getId(), userDTO);
-            }
-            else{
+            } else {
                 throw new BaseException("Check new password!.");
             }
         }
@@ -176,11 +175,10 @@ public class UserService extends BaseService<User, String, UserDTO> implements I
                 .orElseThrow(() -> new EntityNotFoundException(this.getClass().getSimpleName(), "id", resetPasswordModel.getId()));
 
         if (this.passwordEncoder.matches(resetPasswordModel.getOldPassword(), userDTO.getPassword())) {
-            if (Objects.equals(resetPasswordModel.getNewPassword(), resetPasswordModel.getNewPasswordConfirm())){
+            if (Objects.equals(resetPasswordModel.getNewPassword(), resetPasswordModel.getNewPasswordConfirm())) {
                 userDTO.setPassword(this.passwordEncoder.encode(resetPasswordModel.getNewPassword()));
                 this.update(userDTO.getId(), userDTO);
-            }
-            else{
+            } else {
                 throw new BaseException("Check passwords!.");
             }
         }

@@ -14,10 +14,16 @@ import java.util.Optional;
 public interface IUserService extends IBaseService<User, String, UserDTO> {
 
     String generateToken(Authentication authentication);
+
     Optional<UserDTO> findByUsername(String username);
+
     void register(RegisterModel registerModel);
+
     UserDTO updateUserInfo(UserUpdateModel userUpdateModel);
+
     void resetPassword(ResetPasswordModel resetPasswordModel);
+
     void updatePassword(ResetPasswordModel resetPasswordModel);
+
     void forgotPassword(ForgotPasswordModel forgotPasswordModel) throws MessagingException;
 }

@@ -16,11 +16,11 @@ import java.util.Set;
 public class RegisterModel {
 
     @Size(max = 50)
-    @Pattern(regexp= AuthenticationConstants.NAME_TEXT_PATTERN)
+    @Pattern(regexp = AuthenticationConstants.NAME_TEXT_PATTERN)
     private String firstname;
 
     @Size(max = 50)
-    @Pattern(regexp=AuthenticationConstants.NAME_TEXT_PATTERN)
+    @Pattern(regexp = AuthenticationConstants.NAME_TEXT_PATTERN)
     private String lastname;
 
     @NotNull
@@ -39,7 +39,7 @@ public class RegisterModel {
     private Set<AuthorityDTO> authorities = new HashSet<>(0);
 
     public RegisterModel() {
-        authorities.add(new AuthorityDTO("USER","USER"));
+        authorities.add(new AuthorityDTO("USER", "USER"));
         roles.add(new RoleDTO("USER", "USER"));
     }
 
