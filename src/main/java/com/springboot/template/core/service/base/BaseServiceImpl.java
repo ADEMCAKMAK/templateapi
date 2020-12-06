@@ -1,56 +1,52 @@
 package com.springboot.template.core.service.base;
 
 import com.springboot.template.core.entity.base.BaseEntity;
+import com.springboot.template.core.mapper.EntityModelMapper;
 import com.springboot.template.core.repository.base.BaseRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
-
 import javax.persistence.EntityNotFoundException;
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 @Transactional(readOnly = true)
 @Service
-public abstract class BaseServiceImpl<T extends BaseEntity<ID>, ID extends Serializable>
-        implements BaseService<T, ID> {
+public abstract class BaseServiceImpl<T extends BaseEntity<ID>, ID extends Serializable, M extends BaseModel<ID>>
+        implements BaseService<T, ID, M> {
 
     private final BaseRepository<T, ID> repository;
+    private final EntityModelMapper<T, M> entityModelMapper;
 
-    protected BaseServiceImpl(BaseRepository<T, ID> repository) {
+    protected BaseServiceImpl(BaseRepository<T, ID> repository, EntityModelMapper<T, M> entityModelMapper) {
         this.repository = repository;
+        this.entityModelMapper = entityModelMapper;
     }
 
-    @Override
-    public Page<T> findAll(String query, Pageable pageable) {
-
-        if( StringUtils.hasLength(query) )
-            return repository.findAll(pageable); // TODO added RsqlUtils or alternatives.
-        else
-            return repository.findAll(pageable);
+    public BaseRepository<T, ID> getRepository() {
+        return repository;
     }
 
     @Override
     public List<T> findAll(String query) {
+        return getRepository().findAll(query);
+    }
 
-        if( StringUtils.hasLength(query) )
-            return Collections.emptyList(); // TODO added RsqlUtils or alternatives.
-        else
-            return repository.findAll();
+    @Override
+    public Page<T> findAll(String query, Pageable pageable) {
+        return getRepository().findAll(query, pageable);
     }
 
     @Override
     public Optional<T> findById(ID id) {
-        return repository.findById(id);
+        return getRepository().findById(id);
     }
 
     @Override
     public T create(T model) {
-        return repository.save(model);
+        return getRepository().save(model);
     }
 
     @Override
@@ -63,16 +59,16 @@ public abstract class BaseServiceImpl<T extends BaseEntity<ID>, ID extends Seria
 
         if( created ) return create(model);
 
-        Boolean found = repository.existsById(model.getId());
+        Boolean found = getRepository().existsById(model.getId());
 
         if( found )
-            return repository.save(model);
+            return getRepository().save(model);
         else
            throw new EntityNotFoundException(this.getClass().getSimpleName()+" id: "+model.getId().toString());
     }
 
     @Override
     public void delete(ID id) {
-        repository.deleteById(id);
+        getRepository().deleteById(id);
     }
 }

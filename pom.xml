@@ -16,7 +16,9 @@
 
     <properties>
         <java.version>8</java.version>
-        <commons-lang3.version>3.11</commons-lang3.version>
+        <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
+        <rsql-parser.version>2.1.0</rsql-parser.version>
+        <rsql-jpa.version>2.0.2</rsql-jpa.version>
     </properties>
 
     <dependencies>
@@ -35,6 +37,27 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/cz.jirutka.rsql/rsql-parser -->
+        <dependency>
+            <groupId>cz.jirutka.rsql</groupId>
+            <artifactId>rsql-parser</artifactId>
+            <version>${rsql-parser.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.github.tennaito/rsql-jpa -->
+        <dependency>
+            <groupId>com.github.tennaito</groupId>
+            <artifactId>rsql-jpa</artifactId>
+            <version>${rsql-jpa.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -42,6 +65,22 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
             </plugin>
         </plugins>
     </build>

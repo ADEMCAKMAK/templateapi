@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-public interface BaseService<T extends BaseEntity<ID>, ID extends Serializable> {
+public interface BaseService<T extends BaseEntity<ID>, ID extends Serializable, M extends BaseModel<ID>> {
 
     Page<T> findAll(String query, Pageable pageable);
 
