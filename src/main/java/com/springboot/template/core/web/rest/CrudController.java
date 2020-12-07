@@ -2,15 +2,16 @@ package com.springboot.template.core.web.rest;
 
 import com.springboot.template.core.entity.base.BaseEntity;
 import com.springboot.template.core.service.base.BaseModel;
+import org.springframework.http.ResponseEntity;
 
 import java.io.Serializable;
 
-public interface CrudController<E extends BaseEntity<ID>, ID extends Serializable, M extends BaseModel<ID>>
-        extends ReadOnlyController<E, ID, M>{
+public interface CrudController<T extends BaseEntity<ID>, ID extends Serializable, M extends BaseModel<ID>>
+        extends ReadOnlyController<T, ID, M>{
 
-    M create(M model);
+    ResponseEntity<M> create(M model);
 
-    M update(M model);
+    ResponseEntity<M> update(M model);
 
-    void delete(ID id);
+    ResponseEntity<?> delete(ID id);
 }

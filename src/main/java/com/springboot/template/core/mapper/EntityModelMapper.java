@@ -1,14 +1,23 @@
 package com.springboot.template.core.mapper;
 
+import org.springframework.data.domain.Page;
+
 import java.util.List;
+import java.util.Optional;
 
-public interface EntityModelMapper<E, M> {
+public interface EntityModelMapper<T, M> {
 
-    E fromModelToEntity(final M model);
+    T fromModelToEntity(final M model);
 
-    M fromEntityToModel(final E entity);
+    Optional<T> fromModelToEntity(final Optional<M> optModel);
 
-    List<E> fromModelToEntity(final List<M> model);
+    M fromEntityToModel(final T entity);
 
-    List<M> fromEntityToModel(final List<E> entity);
+    Optional<M> fromEntityToModel(final Optional<T> optEntity);
+
+    List<T> fromModelToEntity(final List<M> models);
+
+    List<M> fromEntityToModel(final List<T> entities);
+
+    Page<M> fromEntityToModel(final Page<T> entities);
 }

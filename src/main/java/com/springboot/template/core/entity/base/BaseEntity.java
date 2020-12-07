@@ -87,4 +87,5 @@ public abstract class BaseEntity<ID extends Serializable>
     public void setLastModifiedDate(Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
+
 }

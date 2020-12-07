@@ -29,42 +29,54 @@ public abstract class BaseServiceImpl<T extends BaseEntity<ID>, ID extends Seria
         return repository;
     }
 
-    @Override
-    public List<T> findAll(String query) {
-        return getRepository().findAll(query);
+    public EntityModelMapper<T, M> getEntityModelMapper() {
+        return entityModelMapper;
     }
 
     @Override
-    public Page<T> findAll(String query, Pageable pageable) {
-        return getRepository().findAll(query, pageable);
+    public List<M> findAll(String query) {
+        return getEntityModelMapper().fromEntityToModel(getRepository().findAll(query));
     }
 
     @Override
-    public Optional<T> findById(ID id) {
-        return getRepository().findById(id);
+    public Page<M> findAll(String query, Pageable pageable) {
+        return getEntityModelMapper().fromEntityToModel(getRepository().findAll(query, pageable));
     }
 
     @Override
-    public T create(T model) {
-        return getRepository().save(model);
+    public Optional<M> findById(ID id) {
+        return getEntityModelMapper().fromEntityToModel(getRepository().findById(id));
     }
 
     @Override
-    public T update(T model) {
+    public M findByID(ID id) {
+        return findById(id).orElseThrow(
+                ()-> new EntityNotFoundException(this.getClass().getSimpleName()+" id: "+id)
+        );
+    }
+
+    @Override
+    public M create(M model) {
+        T saveEntity = getEntityModelMapper().fromModelToEntity(model);
+        return getEntityModelMapper().fromEntityToModel(getRepository().save(saveEntity));
+    }
+
+    @Override
+    public M update(M model) {
         return update(model, false);
     }
 
     @Override
-    public T update(T model, Boolean created) {
+    public M update(M model, Boolean created) {
 
         if( created ) return create(model);
 
         Boolean found = getRepository().existsById(model.getId());
 
         if( found )
-            return getRepository().save(model);
+            return create(model);
         else
-           throw new EntityNotFoundException(this.getClass().getSimpleName()+" id: "+model.getId().toString());
+           throw new EntityNotFoundException(this.getClass().getSimpleName()+" id: "+model.getId());
     }
 
     @Override
