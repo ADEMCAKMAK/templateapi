@@ -15,7 +15,7 @@
     <description>Template project for Spring Boot Application</description>
 
     <properties>
-        <java.version>8</java.version>
+        <java.version>11</java.version>
         <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
         <rsql-parser.version>2.1.0</rsql-parser.version>
         <rsql-jpa.version>2.0.2</rsql-jpa.version>
@@ -56,6 +56,12 @@
             <groupId>com.github.tennaito</groupId>
             <artifactId>rsql-jpa</artifactId>
             <version>${rsql-jpa.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
         </dependency>
 
     </dependencies>
