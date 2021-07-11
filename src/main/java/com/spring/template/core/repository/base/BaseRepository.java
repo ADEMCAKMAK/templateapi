@@ -16,8 +16,8 @@ public interface BaseRepository<T extends BaseEntity<ID>, ID extends Serializabl
 
     EntityManager getEntityManager();
 
-    Page<T> findAll(String query, Pageable pageable);
+    Page<T> findAll(final String query, final Pageable pageable);
 
-    List<T> findAll(String query);
+    List<T> findAll(final String query);
 
 }

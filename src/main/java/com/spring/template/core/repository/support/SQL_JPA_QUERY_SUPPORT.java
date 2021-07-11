@@ -11,6 +11,8 @@ import javax.persistence.criteria.Predicate;
 
 public class SQL_JPA_QUERY_SUPPORT {
 
+    private SQL_JPA_QUERY_SUPPORT() {}
+
     public static <E> Specification<E> toSpecification(final String query, final EntityManager entityManager) {
         return (root, criteriaQuery, criteriaBuilder) -> {
             RSQLVisitor<Predicate, EntityManager> visitor = new JpaPredicateVisitor<E>().defineRoot(root);

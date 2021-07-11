@@ -32,7 +32,7 @@ public class BaseRepositoryImpl<T extends BaseEntity<ID>, ID extends Serializabl
 
     @Override
     @Transactional(readOnly = true)
-    public Page<T> findAll(String query, Pageable pageable) {
+    public Page<T> findAll(final String query, final Pageable pageable) {
         return StringUtils.isEmpty(query) ?
                 this.findAll(pageable) :
                 this.findAll(SQL_JPA_QUERY_SUPPORT.toSpecification(query, getEntityManager()), pageable);
@@ -40,7 +40,7 @@ public class BaseRepositoryImpl<T extends BaseEntity<ID>, ID extends Serializabl
 
     @Override
     @Transactional(readOnly = true)
-    public List<T> findAll(String query) {
+    public List<T> findAll(final String query) {
         return StringUtils.isEmpty(query) ?
                 this.findAll() :
                 this.findAll(SQL_JPA_QUERY_SUPPORT.toSpecification(query, getEntityManager()));

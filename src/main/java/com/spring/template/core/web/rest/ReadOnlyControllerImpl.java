@@ -19,7 +19,7 @@ public abstract class ReadOnlyControllerImpl<T extends BaseEntity<ID>, ID extend
     
     private final BaseService<T, ID, M> baseService;
 
-    public ReadOnlyControllerImpl(BaseService<T, ID, M> baseService) {
+    protected ReadOnlyControllerImpl(BaseService<T, ID, M> baseService) {
         this.baseService = baseService;
     }
 
@@ -30,7 +30,7 @@ public abstract class ReadOnlyControllerImpl<T extends BaseEntity<ID>, ID extend
     @GetMapping(value = "{id}")
     @Override
     public ResponseEntity<M> findById(@PathVariable("id") ID id) {
-        return ResponseEntity.ok(getBaseService().findByID(id));
+        return ResponseEntity.ok(getBaseService().findById(id));
     }
 
     @GetMapping

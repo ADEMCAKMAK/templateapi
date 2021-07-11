@@ -1,71 +1,64 @@
 package com.spring.template.core.service.base;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public abstract class BaseModel<ID extends Serializable>
-        implements Serializable {
+        implements Model<ID> {
 
-    private static final long serialVersionUID = 6841028096770761004L;
+    private Integer version;
+    private Long createdBy;
+    private LocalDateTime createdDate;
+    private Long lastModifiedBy;
+    private LocalDateTime lastModifiedDate;
+    private Boolean deleted = Boolean.FALSE;
 
-    @JsonIgnore
-    private int version;
-    @JsonIgnore
-    private String createdBy;
-    @JsonIgnore
-    private Date createdDate;
-    @JsonIgnore
-    private String lastModifiedBy;
-    @JsonIgnore
-    private Date lastModifiedDate;
-
-    abstract public ID getId();
-
-    abstract public void setId(ID id);
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 
-    public String getCreatedBy() {
+    public Long getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
 
-    public Date getCreatedDate() {
+    public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
 
-    public String getLastModifiedBy() {
+    public Long getLastModifiedBy() {
         return lastModifiedBy;
     }
 
-    public void setLastModifiedBy(String lastModifiedBy) {
+    public void setLastModifiedBy(Long lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
 
-    public Date getLastModifiedDate() {
+    public LocalDateTime getLastModifiedDate() {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
+    public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 }

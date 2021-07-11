@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityNotFoundException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -35,23 +36,23 @@ public abstract class BaseServiceImpl<T extends BaseEntity<ID>, ID extends Seria
     }
 
     @Override
-    public List<M> findAll(String query) {
+    public List<M> findAll(final String query) {
         return getEntityModelMapper().fromEntityToModel(getRepository().findAll(query));
     }
 
     @Override
-    public Page<M> findAll(String query, Pageable pageable) {
+    public Page<M> findAll(final String query, final Pageable pageable) {
         return getEntityModelMapper().fromEntityToModel(getRepository().findAll(query, pageable));
     }
 
     @Override
-    public Optional<M> findById(ID id) {
+    public Optional<M> optionalFindById(final ID id) {
         return getEntityModelMapper().fromEntityToModel(getRepository().findById(id));
     }
 
     @Override
-    public M findByID(ID id) {
-        return findById(id).orElseThrow(
+    public M findById(final ID id) {
+        return optionalFindById(id).orElseThrow(
                 ()-> new EntityNotFoundException(this.getClass().getSimpleName()+" id: "+id)
         );
     }
@@ -66,26 +67,31 @@ public abstract class BaseServiceImpl<T extends BaseEntity<ID>, ID extends Seria
     @Override
     @Transactional
     public M update(M model) {
-        return update(model, false);
-    }
-
-    @Override
-    @Transactional
-    public M update(M model, Boolean created) {
-
-        if( created ) return create(model);
-
         Boolean found = getRepository().existsById(model.getId());
-
-        if( found )
-            return create(model);
+        if( Objects.equals(found, Boolean.TRUE) ) {
+            T updateEntity = getEntityModelMapper().updateFromModelToEntity(model, getRepository().getOne(model.getId()));
+            return getEntityModelMapper().fromEntityToModel(getRepository().saveAndFlush(updateEntity));
+        }
         else
-           throw new EntityNotFoundException(this.getClass().getSimpleName()+" id: "+model.getId());
+            throw new EntityNotFoundException(this.getClass().getSimpleName()+" id: "+model.getId());
     }
 
     @Override
     @Transactional
-    public void delete(ID id) {
+    public void delete(final ID id) {
         getRepository().deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void softDelete(final ID id) {
+        Boolean found = getRepository().existsById(id);
+        if( Objects.equals(found, Boolean.TRUE) ) {
+            T deleteEntity = getRepository().getOne(id);
+            deleteEntity.setDeleted(Boolean.TRUE);
+            getRepository().save(deleteEntity);
+        }
+        else
+            throw new EntityNotFoundException(this.getClass().getSimpleName()+" id: "+id);
     }
 }

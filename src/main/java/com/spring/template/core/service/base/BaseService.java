@@ -10,20 +10,19 @@ import java.util.Optional;
 
 public interface BaseService<T extends BaseEntity<ID>, ID extends Serializable, M extends BaseModel<ID>> {
 
-    Page<M> findAll(String query, Pageable pageable);
+    Page<M> findAll(final String query, final Pageable pageable);
 
-    List<M> findAll(String query);
+    List<M> findAll(final String query);
 
-    Optional<M> findById(ID id);
+    Optional<M> optionalFindById(final ID id);
 
-    M findByID(ID id);
+    M findById(final ID id);
 
     M create(M model);
 
     M update(M model);
 
-    M update(M model, Boolean created);
+    void delete(final ID id);
 
-    void delete(ID id);
-    
+    void softDelete(final ID id);
 }

@@ -7,12 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public abstract class CrudControllerImpl<T extends BaseEntity<ID>, ID extends Serializable, M extends BaseModel<ID>>
     extends ReadOnlyControllerImpl<T, ID, M>
     implements CrudController<T, ID, M>, ReadOnlyController<T, ID, M>{
 
-    public CrudControllerImpl(BaseService<T, ID, M> baseService) {
+    protected CrudControllerImpl(BaseService<T, ID, M> baseService) {
         super(baseService);
     }
 
@@ -30,8 +31,12 @@ public abstract class CrudControllerImpl<T extends BaseEntity<ID>, ID extends Se
 
     @DeleteMapping(value = "{id:.+}")
     @Override
-    public ResponseEntity<?> delete(@PathVariable("id") ID id) {
-        getBaseService().delete(id);
+    public ResponseEntity<?> delete(@PathVariable("id") ID id, @RequestParam(defaultValue = "false", required = false) Boolean force) {
+        if(Objects.equals(force, Boolean.TRUE) )
+            getBaseService().delete(id);
+        else
+            getBaseService().softDelete(id);
+
         return ResponseEntity.ok().build();
     }
 }
