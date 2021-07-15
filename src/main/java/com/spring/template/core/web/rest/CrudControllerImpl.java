@@ -23,7 +23,7 @@ public abstract class CrudControllerImpl<T extends BaseEntity<ID>, ID extends Se
         return ResponseEntity.ok(getBaseService().create(model));
     }
 
-    @PutMapping(value = "{id:.+}")
+    @PutMapping
     @Override
     public ResponseEntity<M> update(@RequestBody M model) {
         return ResponseEntity.ok(getBaseService().update(model));
@@ -31,7 +31,7 @@ public abstract class CrudControllerImpl<T extends BaseEntity<ID>, ID extends Se
 
     @DeleteMapping(value = "{id:.+}")
     @Override
-    public ResponseEntity<?> delete(@PathVariable("id") ID id, @RequestParam(defaultValue = "false", required = false) Boolean force) {
+    public ResponseEntity<M> delete(@PathVariable("id") ID id, @RequestParam(defaultValue = "false", required = false) Boolean force) {
         if(Objects.equals(force, Boolean.TRUE) )
             getBaseService().delete(id);
         else

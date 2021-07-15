@@ -13,5 +13,5 @@ public interface CrudController<T extends BaseEntity<ID>, ID extends Serializabl
 
     ResponseEntity<M> update(M model);
 
-    ResponseEntity<?> delete(ID id, Boolean force);
+    ResponseEntity<M> delete(ID id, Boolean force);
 }
