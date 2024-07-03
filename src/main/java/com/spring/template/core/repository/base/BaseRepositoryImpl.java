@@ -1,12 +1,11 @@
 package com.spring.template.core.repository.base;
 
 import com.spring.template.core.entity.base.BaseEntity;
-import com.spring.template.core.repository.support.SQL_JPA_QUERY_SUPPORT;
+import com.spring.template.core.repository.support.SqlJpaQuerySupport;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
@@ -31,18 +30,16 @@ public class BaseRepositoryImpl<T extends BaseEntity<ID>, ID extends Serializabl
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Page<T> findAll(final String query, final Pageable pageable) {
         return StringUtils.isEmpty(query) ?
                 this.findAll(pageable) :
-                this.findAll(SQL_JPA_QUERY_SUPPORT.toSpecification(query, getEntityManager()), pageable);
+                this.findAll(SqlJpaQuerySupport.toSpecification(query, getEntityManager()), pageable);
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<T> findAll(final String query) {
         return StringUtils.isEmpty(query) ?
                 this.findAll() :
-                this.findAll(SQL_JPA_QUERY_SUPPORT.toSpecification(query, getEntityManager()));
+                this.findAll(SqlJpaQuerySupport.toSpecification(query, getEntityManager()));
     }
 }

@@ -9,9 +9,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.criteria.Predicate;
 
 
-public class SQL_JPA_QUERY_SUPPORT {
+public class SqlJpaQuerySupport {
 
-    private SQL_JPA_QUERY_SUPPORT() {}
+    private SqlJpaQuerySupport() {}
 
     public static <E> Specification<E> toSpecification(final String query, final EntityManager entityManager) {
         return (root, criteriaQuery, criteriaBuilder) -> {
