@@ -15,7 +15,6 @@ import com.springboot.template.core.web.rest.model.ForgotPasswordModel;
 import com.springboot.template.core.web.rest.model.RegisterModel;
 import com.springboot.template.core.web.rest.model.ResetPasswordModel;
 import com.springboot.template.core.web.rest.model.UserUpdateModel;
-import com.springboot.template.mail.MailService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
 import java.util.*;
-import java.util.stream.Stream;
 
 
 @Transactional(readOnly = true)
@@ -33,21 +31,18 @@ public class UserService extends BaseService<User, String, UserDTO> implements I
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
-    private final MailService mailService;
     private final AuthorityService authorityService;
     private final RoleService roleService;
 
     public UserService(UserRepository userRepository,
                        PasswordEncoder passwordEncoder,
                        TokenProvider tokenProvider,
-                       MailService mailService,
                        AuthorityService authorityService,
                        RoleService roleService) {
         super(userRepository);
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.tokenProvider = tokenProvider;
-        this.mailService = mailService;
         this.authorityService = authorityService;
         this.roleService = roleService;
     }
@@ -133,7 +128,6 @@ public class UserService extends BaseService<User, String, UserDTO> implements I
         UUID uuid = UUID.randomUUID();
         userDTO.setResetToken(resetToken);
         userDTO.setResetUUID(uuid.toString());
-        this.mailService.send(forgotPasswordModel.getEmail(), "test mail", "<p>" + this.mailHtmlContent(uuid.toString()) + "</p>");
         this.update(userDTO.getId(), userDTO);
     }
 

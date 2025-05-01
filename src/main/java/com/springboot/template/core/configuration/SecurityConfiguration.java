@@ -88,6 +88,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     expressionInterceptUrlRegistry
                             .antMatchers("/user/register", "/login", "/user/activate", "/user/account/forgot-password", "/user/account/reset-password").permitAll()
                             .antMatchers("/v2/api-docs/**").permitAll()
+                            .antMatchers("/h2-console/**").permitAll()
                             .antMatchers("/swagger-resources/configuration/ui").permitAll()
                             .antMatchers("/swagger-ui/index.html").permitAll()
                             .antMatchers("/api/**").authenticated();
