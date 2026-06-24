@@ -2,8 +2,8 @@ package com.spring.template.backend.auth;
 
 import com.spring.template.core.entity.base.BaseEntity;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 public class Group extends BaseEntity<Long> {
 

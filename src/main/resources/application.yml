@@ -5,18 +5,12 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/template_db
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://localhost:5432/mydb
+    username: dev
+    password: devpass
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      naming:
-        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
-        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
       use-new-ID-generator-mappings: true
       ddl-auto: create
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
     open-in-view: false

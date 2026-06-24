@@ -8,21 +8,12 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-public interface BaseService<T extends BaseEntity<ID>, ID extends Serializable, M extends BaseModel<ID>> {
+public interface BaseService<T extends BaseEntity<ID>, ID extends Serializable> {
 
-    Page<M> findAll(final String query, final Pageable pageable);
+    void delete(final ID id, boolean force);
 
-    List<M> findAll(final String query);
+    default void delete(final ID id){
+        delete(id, false);
+    }
 
-    Optional<M> optionalFindById(final ID id);
-
-    M findById(final ID id);
-
-    M create(M model);
-
-    M update(M model);
-
-    void delete(final ID id);
-
-    void softDelete(final ID id);
 }

@@ -1,16 +1,11 @@
 package com.spring.template.core.repository.base;
 
 import com.spring.template.core.entity.base.BaseEntity;
-import com.spring.template.core.repository.support.SqlJpaQuerySupport;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
-import org.springframework.util.StringUtils;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import java.io.Serializable;
-import java.util.List;
 
 
 public class BaseRepositoryImpl<T extends BaseEntity<ID>, ID extends Serializable>
@@ -29,17 +24,4 @@ public class BaseRepositoryImpl<T extends BaseEntity<ID>, ID extends Serializabl
         return entityManager;
     }
 
-    @Override
-    public Page<T> findAll(final String query, final Pageable pageable) {
-        return StringUtils.isEmpty(query) ?
-                this.findAll(pageable) :
-                this.findAll(SqlJpaQuerySupport.toSpecification(query, getEntityManager()), pageable);
-    }
-
-    @Override
-    public List<T> findAll(final String query) {
-        return StringUtils.isEmpty(query) ?
-                this.findAll() :
-                this.findAll(SqlJpaQuerySupport.toSpecification(query, getEntityManager()));
-    }
 }

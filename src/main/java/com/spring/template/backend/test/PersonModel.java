@@ -1,8 +1,8 @@
 package com.spring.template.backend.test;
 
-import com.spring.template.core.service.base.BaseModel;
+import com.spring.template.core.service.base.BaseDTO;
 
-public class PersonModel extends BaseModel<Long> {
+public class PersonModel extends BaseDTO<Long> {
 
     private Long id;
     private String name;

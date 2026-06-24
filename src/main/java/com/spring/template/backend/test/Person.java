@@ -2,7 +2,7 @@ package com.spring.template.backend.test;
 
 import com.spring.template.core.entity.base.BaseEntity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table

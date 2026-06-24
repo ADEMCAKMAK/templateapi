@@ -6,17 +6,17 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.EntityListeners;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
+import jakarta.persistence.Column;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Version;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class BaseEntity<ID extends Serializable> implements Entity<ID> {
+public abstract class BaseEntity<ID extends Serializable> implements Serializable {
 
     @Version
     @Column(name = "VERSION")
@@ -40,6 +40,10 @@ public abstract class BaseEntity<ID extends Serializable> implements Entity<ID> 
 
     @Column(name = "DELETED")
     private Boolean deleted = Boolean.FALSE;
+
+    public abstract ID getId();
+
+    public abstract void setId(ID id);
 
     public Integer getVersion() {
         return version;
@@ -92,19 +96,13 @@ public abstract class BaseEntity<ID extends Serializable> implements Entity<ID> 
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        if (!(other instanceof BaseEntity)) return false;
-        BaseEntity<?> that = (BaseEntity<?>) other;
+        if (!(other instanceof BaseEntity<?> that)) return false;
         return Objects.equals(getId(), that.getId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getId());
-    }
-
-    @Override
-    public String toString() {
-        return "BaseEntity{ id=" + getId() + "}";
     }
 
 }

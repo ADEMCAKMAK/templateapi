@@ -3,18 +3,21 @@ package com.spring.template.backend.test;
 import com.spring.template.core.service.base.BaseService;
 import com.spring.template.core.service.base.BaseServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class PersonService
-        extends BaseServiceImpl<Person, Long, PersonModel>
-        implements BaseService<Person, Long, PersonModel> {
+@Transactional(readOnly = true)
+public class PersonService extends BaseServiceImpl<Person, Long>
+        implements BaseService<Person, Long> {
 
     private final PersonRepository personRepository;
-    private final PersonMapper personMapper;
 
-    public PersonService(PersonRepository personRepository, PersonMapper personMapper) {
-        super(personRepository, personMapper);
+    public PersonService(PersonRepository personRepository) {
+        super(personRepository);
         this.personRepository = personRepository;
-        this.personMapper = personMapper;
+    }
+
+    public PersonRepository getPersonRepository() {
+        return personRepository;
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.data.repository.NoRepositoryBean;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,9 +15,4 @@ public interface BaseRepository<T extends BaseEntity<ID>, ID extends Serializabl
         extends JpaRepositoryImplementation<T, ID> {
 
     EntityManager getEntityManager();
-
-    Page<T> findAll(final String query, final Pageable pageable);
-
-    List<T> findAll(final String query);
-
 }

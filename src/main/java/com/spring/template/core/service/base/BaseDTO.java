@@ -1,11 +1,9 @@
 package com.spring.template.core.service.base;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public abstract class BaseModel<ID extends Serializable>
-        implements Model<ID> {
+public abstract class BaseDTO<ID extends Serializable> implements Serializable {
 
     private Integer version;
     private Long createdBy;
@@ -13,6 +11,10 @@ public abstract class BaseModel<ID extends Serializable>
     private Long lastModifiedBy;
     private LocalDateTime lastModifiedDate;
     private Boolean deleted = Boolean.FALSE;
+
+    public abstract ID getId();
+
+    public abstract void setId(ID id);
 
     public Integer getVersion() {
         return version;

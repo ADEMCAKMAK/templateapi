@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.12.RELEASE</version>
+        <version>3.5.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.springboot</groupId>
@@ -15,10 +15,8 @@
     <description>Template project for Spring Boot Application</description>
 
     <properties>
-        <java.version>11</java.version>
-        <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
-        <rsql-parser.version>2.1.0</rsql-parser.version>
-        <rsql-jpa.version>2.0.2</rsql-jpa.version>
+        <java.version>21</java.version>
+        <org.mapstruct.version>1.6.3</org.mapstruct.version>
     </properties>
 
     <dependencies>
@@ -44,24 +42,11 @@
             <version>${org.mapstruct.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/cz.jirutka.rsql/rsql-parser -->
-        <dependency>
-            <groupId>cz.jirutka.rsql</groupId>
-            <artifactId>rsql-parser</artifactId>
-            <version>${rsql-parser.version}</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.github.tennaito/rsql-jpa -->
-        <dependency>
-            <groupId>com.github.tennaito</groupId>
-            <artifactId>rsql-jpa</artifactId>
-            <version>${rsql-jpa.version}</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
+            <version>42.7.7</version>
         </dependency>
 
         <dependency>
@@ -80,7 +65,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
